@@ -1,0 +1,1 @@
+// If you are baking textures from within Unity's UI and wonder why nothing shows up in the folder you selected simply Ctrl-Tab out of Unity (to lose focus of the window) and Ctrl-Tab back in. As of Unity 4.5 the files created apparently are not immeadiately recognised as new. If you refocus the editor the files are being scanned and imported automatically.
