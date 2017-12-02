@@ -54,6 +54,6 @@ public class BabyZillaController : MonoBehaviour {
 		Vector3 testPosition = babyPositions [babiesAtEachLevel [layer]];
 		testPosition.y = layer;
 		Debug.Log (testPosition);
-		babiesAtEachLevel [layer]++
+		babiesAtEachLevel [layer]++;
 	}
 }
