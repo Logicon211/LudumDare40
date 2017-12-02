@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BabyZillaController : MonoBehaviour {
 
-	private int numberOfBabies = 0;
 	private int maxBabyCapacity = 20;
 	private int[] babiesAtEachLevel;
 
+	private List<GameObject> babyList;
 	private List<Vector3> babyPositions;
 
 	// Use this for initialization
@@ -17,7 +17,9 @@ public class BabyZillaController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown (KeyCode.E)) {
+			EjectBaby ();
+		}
 	}
 		
 	void OnTriggerEnter(Collider other) {
@@ -29,6 +31,7 @@ public class BabyZillaController : MonoBehaviour {
 	private void Init () {
 		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0};
 		babyPositions = new List<Vector3> ();
+		babyList = new List<GameObject> ();
 		babyPositions.Add (new Vector3 (0f, 0f, 0f));
 		babyPositions.Add (new Vector3 (1f, 0f, 0f));
 		babyPositions.Add (new Vector3 (-1f, 0f, 0f));
@@ -39,11 +42,11 @@ public class BabyZillaController : MonoBehaviour {
 	private void AddBabyToBabyZilla (GameObject baby) {
 		baby.GetComponent<BabyController> ().SetPartOfBabyZilla (true);
 		int currentLayer = 0;
-		while (numberOfBabies < maxBabyCapacity && currentLayer < (babiesAtEachLevel.Length - 1) && babiesAtEachLevel [currentLayer] > babiesAtEachLevel [currentLayer + 1]) {
-			currentLayer++;
+		while (babyList.Count < maxBabyCapacity && currentLayer < (babiesAtEachLevel.Length - 1) && babiesAtEachLevel [currentLayer] > babiesAtEachLevel [currentLayer + 1]) {
+			++currentLayer;
 		}
 
-		if (numberOfBabies < maxBabyCapacity) {
+		if (babyList.Count < maxBabyCapacity) {
 			MakeBabyChildOfBabyZilla (baby, currentLayer);
 		} else {
 //			Some lose condition
@@ -55,9 +58,18 @@ public class BabyZillaController : MonoBehaviour {
 		newBabyPosition.y = layer;
 		Debug.Log (newBabyPosition);
 		babiesAtEachLevel [layer]++;
-		Rigidbody babyRigidBody = baby.GetComponent<Rigidbody> ();
-		babyRigidBody.isKinematic = true;
+		baby.GetComponent<BabyController> ().CombineWithBabyZilla ();
+		baby.GetComponent<BabyController> ().SetBabyZillaLayer (layer);
+		babyList.Add (baby);
 		baby.transform.parent = this.gameObject.transform;
 		baby.transform.position = this.gameObject.transform.position + newBabyPosition;
+	}
+
+	public void EjectBaby () {
+		GameObject babyToEject = babyList [babyList.Count - 1];
+		babyList.RemoveAt (babyList.Count - 1);
+		--babiesAtEachLevel [babyToEject.GetComponent<BabyController> ().GetBabyZillaLayer ()];
+		Vector3 startPosition = new Vector3 (0f, 6f, 0f);
+		babyToEject.GetComponent<BabyController> ().EjectFromBabyZilla (this.gameObject.transform.position + startPosition);
 	}
 }

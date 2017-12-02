@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - Babyzilla
   - Baby
+  - Ground
   layers:
   - Default
   - TransparentFX
