@@ -10,7 +10,10 @@ public class PlayerLineOfSight : MonoBehaviour {
 	bool isObjectInRange;
 	GameObject objectInHand;
 	public LayerMask colliderMask;
-	public Text interactionText;
+
+	// LUDUM DARE 37 CODE
+	// public Text interactionText;
+
 	private GameObject equipedItem;
 	public GameObject equipableWrench;
 	public GameObject equipableDumbell;
@@ -21,7 +24,10 @@ public class PlayerLineOfSight : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isObjectInRange = false;
-		interactionText.text = "";
+
+		// LUDUM DARE 37 CODE
+		// interactionText.text = "";
+
 		equipableWrench.SetActive (false);
 		animator = GetComponentInChildren<Animator>();
 	}
@@ -98,7 +104,8 @@ public class PlayerLineOfSight : MonoBehaviour {
 			} 
 		}
 
-		updateInteractionText (interactableObject, pickupableObject, equipableObject, repairableObject);
+		// LUDUM DARE 37 CODE
+		// updateInteractionText (interactableObject, pickupableObject, equipableObject, repairableObject);
 	}
 
     public bool IsAbleToPunch()
@@ -109,22 +116,23 @@ public class PlayerLineOfSight : MonoBehaviour {
     }
 
 	private void updateInteractionText(IInteractable interactable, IPickupable pickupable, IEquipable equipable, IRepairable repairable) {
-		
-		if (interactable != null && objectInHand == null) {
-			interactionText.text = "[E] to interact";
-		} else if (pickupable != null && objectInHand == null) {
-			interactionText.text = "[E] to pickup";
-		} else if (equipable != null && equipedItem == null && objectInHand == null) {
-			interactionText.text = "[E] to equip";
-		} else if (repairable != null && equipedItem != null && equipedItem.CompareTag("Wrench")) {
-			if (repairable.getRepaired ()) {
-				interactionText.text = "Target is Repaired";
-			} else {
-				interactionText.text = "[Left Click] to repair";
-			}
-		} else { 
-			interactionText.text = "";
-		}
+
+		//LUDUM DARE 37 CODE
+//		if (interactable != null && objectInHand == null) {
+//			interactionText.text = "[E] to interact";
+//		} else if (pickupable != null && objectInHand == null) {
+//			interactionText.text = "[E] to pickup";
+//		} else if (equipable != null && equipedItem == null && objectInHand == null) {
+//			interactionText.text = "[E] to equip";
+//		} else if (repairable != null && equipedItem != null && equipedItem.CompareTag("Wrench")) {
+//			if (repairable.getRepaired ()) {
+//				interactionText.text = "Target is Repaired";
+//			} else {
+//				interactionText.text = "[Left Click] to repair";
+//			}
+//		} else { 
+//			interactionText.text = "";
+//		}
 	}
 
 	public GameObject GetEquipedItem() {

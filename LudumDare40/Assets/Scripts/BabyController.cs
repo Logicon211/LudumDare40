@@ -5,18 +5,31 @@ using UnityEngine;
 public class BabyController : MonoBehaviour {
 
 	public float speed;
-	public GameObject babyZilla;
 
+	private GameObject babyZilla;
+	private bool partOfBabyZilla;
 
 
 	// Use this for initialization
 	void Start () {
-		babyZilla = GameObject.FindGameObjectWithTag ("Babyzilla");
+		Init ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float step = speed * Time.deltaTime;
-		this.transform.position = Vector3.MoveTowards (this.transform.position, babyZilla.transform.position, step);
+		if (!partOfBabyZilla) {
+			float step = speed * Time.deltaTime;
+			this.transform.position = Vector3.MoveTowards (this.transform.position, babyZilla.transform.position, step);
+		}
+	}
+
+	public void SetPartOfBabyZilla (bool partOfBabyZilla) {
+		this.partOfBabyZilla = partOfBabyZilla;
+		Debug.Log (this.gameObject.name + " part of BabyZilla: " + this.partOfBabyZilla);
+	}
+
+	void Init () {
+		babyZilla = GameObject.FindGameObjectWithTag ("Babyzilla");
+		partOfBabyZilla = false;
 	}
 }
