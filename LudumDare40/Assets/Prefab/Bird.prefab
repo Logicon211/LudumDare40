@@ -3570,7 +3570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a0aba12b8c876478ef427176abc64b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootBox: {fileID: 1644614854135468, guid: 31c806226a1db3d4ba731d42cd75ffe2, type: 2}
+  lootBox: {fileID: 54157629850782968, guid: 31c806226a1db3d4ba731d42cd75ffe2, type: 2}
 --- !u!137 &137614520071683530
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

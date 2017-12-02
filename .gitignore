@@ -18,6 +18,8 @@ ExportedObj/
 *.booproj
 *.svd
 
+#Chad shit
+LudumDare40/.vs/*
 
 # Unity3D generated meta files
 *.pidb.meta
