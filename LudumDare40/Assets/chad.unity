@@ -154,6 +154,54 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56ae1718226eb8240ae471acb5eac36d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &208564914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 208564915}
+  - component: {fileID: 208564916}
+  m_Layer: 0
+  m_Name: BabySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &208564915
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208564914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50.86, y: 0, z: -11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 235989225}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &208564916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208564914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc50ed64db87d0246b72db68fbf1477f, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  babyFab: {fileID: 1833892646677904, guid: e83c28de14d86704aace8689b5a049f2, type: 2}
+  maxTimer: 10
+--- !u!4 &235989225 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4764280804525690, guid: 124d74c6953f598448bc929f6075d691,
+    type: 2}
+  m_PrefabInternal: {fileID: 911642685}
 --- !u!1 &548390063
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,8 +227,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b83aa5dd5beb9be47b1b30e2754b3493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   lootBox: {fileID: 1197008366}
   bird: {fileID: 923075754}
 --- !u!4 &548390066
@@ -395,12 +443,12 @@ Prefab:
     - target: {fileID: 198228342325899818, guid: 31c806226a1db3d4ba731d42cd75ffe2,
         type: 2}
       propertyPath: CollisionModule.plane0
-      value: 
+      value:
       objectReference: {fileID: 1594968467}
     - target: {fileID: 198228342325899818, guid: 31c806226a1db3d4ba731d42cd75ffe2,
         type: 2}
       propertyPath: LightsModule.light
-      value: 
+      value:
       objectReference: {fileID: 886104832}
     - target: {fileID: 1644614854135468, guid: 31c806226a1db3d4ba731d42cd75ffe2, type: 2}
       propertyPath: m_Name

@@ -142,19 +142,27 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // calculate camera relative direction to move:
             m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			m_CamSideways = Vector3.Scale(m_Cam.right, new Vector3(1, 0, 1)).normalized;
-			Debug.Log ("h: " + h);
+			//Debug.Log ("h: " + h);
 			m_Move = v*m_CamForward*forwardSpeed + h*m_CamSideways*sideSpeed;
         
 			//Vector3.Angle (m_CamForward, m_Move);
 			//transform.Rotation(Vector3.Angle (m_CamForward, m_Move));
 			//transform.rot
             
-			transform.rotation = Quaternion.Slerp(
+			if (m_Move != Vector3.zero) {
+				//Debug.Log ("m_Move is zero");
+				transform.rotation = Quaternion.Slerp (
+					transform.rotation,
+					Quaternion.LookRotation (m_Move),
+					Time.deltaTime * 5f
+				);
+			} else {
+				transform.rotation = Quaternion.Slerp (
 				transform.rotation,
-				Quaternion.LookRotation(m_Move),
+					Quaternion.LookRotation (m_CamForward),
 				Time.deltaTime * 5f
-			);
-
+				);
+			}
 
 			// pass all parameters to the character control script
             Move(m_Move, m_Jump);

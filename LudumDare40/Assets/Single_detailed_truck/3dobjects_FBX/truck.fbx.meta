@@ -4,11 +4,77 @@ timeCreated: 18446744011573954816
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: Camera
+    100002: //RootNode
+    100004: truck_main
+    100006: wheel_front_left
+    100008: wheel_front_right
+    100010: wheels_back
+    400000: Camera
+    400002: //RootNode
+    400004: truck_main
+    400006: wheel_front_left
+    400008: wheel_front_right
+    400010: wheels_back
+    2300000: truck_main
+    2300002: wheel_front_left
+    2300004: wheel_front_right
+    2300006: wheels_back
+    3300000: truck_main
+    3300002: wheel_front_left
+    3300004: wheel_front_right
+    3300006: wheels_back
     4300000: truck_main
     4300002: wheel_front_left
     4300004: wheel_front_right
     4300006: wheels_back
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: alu
+    second: {fileID: 2100000, guid: 04be3762ecd746241aa675994d809d49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: exhaust
+    second: {fileID: 2100000, guid: e45185205a8f278429f4a9afe487e7f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: main_color
+    second: {fileID: 2100000, guid: cf321d5c3036fdf47b1f39a7a8b18b9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_chromed
+    second: {fileID: 2100000, guid: 0b41392ba8d8fe2439f457776089cf4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_dark
+    second: {fileID: 2100000, guid: 6134a3b3b48f6194fb34c5ea3a65207f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic
+    second: {fileID: 2100000, guid: f08b9019e865f2e4088943576053d75a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheel
+    second: {fileID: 2100000, guid: 172cad7119869f741af05a3244a4fae6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheel_metal
+    second: {fileID: 2100000, guid: 57ed15ca5dff4224ab15249f7dc67dbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: windows
+    second: {fileID: 2100000, guid: 31e56c7393d73c4499aa6ed85a444235, type: 2}
   materials:
     importMaterials: 1
     materialName: 2
