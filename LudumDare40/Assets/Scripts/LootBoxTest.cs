@@ -5,6 +5,7 @@ using UnityEngine;
 public class LootBoxTest : MonoBehaviour {
 
     public LootBox lootBox;
+    public BirdManager bird;
 
     private bool isOpen = false;
 
@@ -26,7 +27,10 @@ public class LootBoxTest : MonoBehaviour {
                 lootBox.DeactivateLootBox();
                 isOpen = !isOpen;
             }
-        
         }
+        if (Input.GetKeyDown("p")) {
+            bird.DropLootBox();
+        }
+
 	}
 }
