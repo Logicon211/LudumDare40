@@ -115,7 +115,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 			Vector3 yRotatedVector = Quaternion.AngleAxis(transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
 
 			Debug.Log (zRotatedVector);
-			launchedObject.GetComponent<Rigidbody> ().velocity = yRotatedVector;
+			launchedObject.GetComponent<Rigidbody> ().velocity = projectileVelocity;
 
 			velocity = velocityStart;
 			//Disable line renderer
