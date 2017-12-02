@@ -1,0 +1,71 @@
+<<<<<<< HEAD
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LootBoxTest : MonoBehaviour {
+
+    public LootBox lootBox;
+    public BirdManager bird;
+
+    private bool isOpen = false;
+
+	// Use this for initialization
+	void Start () {
+        
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (Input.GetKeyDown("space")) {
+            if (!isOpen) {
+                Debug.Log("FUCK");
+                lootBox.ActivateLootBox();
+                isOpen = !isOpen;
+            }
+            else {
+                Debug.Log("FUCK");
+                lootBox.DeactivateLootBox();
+                isOpen = !isOpen;
+            }
+        }
+        if (Input.GetKeyDown("p")) {
+            bird.DropLootBox();
+        }
+
+	}
+}
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LootBoxTest : MonoBehaviour {
+
+    public LootBox lootBox;
+
+    private bool isOpen = false;
+
+	// Use this for initialization
+	void Start () {
+        
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (Input.GetKeyDown("space")) {
+            if (!isOpen) {
+                Debug.Log("FUCK");
+                lootBox.ActivateLootBox();
+                isOpen = !isOpen;
+            }
+            else {
+                Debug.Log("FUCK");
+                lootBox.DeactivateLootBox();
+                isOpen = !isOpen;
+            }
+        
+        }
+	}
+}
+>>>>>>> c6a4f16f82621727528ba33879d31990981197d2

@@ -162,6 +162,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 208564915}
+  - component: {fileID: 208564916}
   m_Layer: 0
   m_Name: BabySpawner
   m_TagString: Untagged
@@ -183,6 +184,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &208564916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208564914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc50ed64db87d0246b72db68fbf1477f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  babyFab: {fileID: 1833892646677904, guid: e83c28de14d86704aace8689b5a049f2, type: 2}
+  maxTimer: 10
 --- !u!4 &235989225 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4764280804525690, guid: 124d74c6953f598448bc929f6075d691,
