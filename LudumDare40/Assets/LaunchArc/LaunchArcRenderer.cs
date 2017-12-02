@@ -20,7 +20,8 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 	public GameObject sphereObject;
 	private GameObject sphere;
-
+	private Transform m_Cam;
+	private Vector3 m_CamForward;
 
 	void Awake () {
 		lr = GetComponent<LineRenderer> ();	
@@ -30,6 +31,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 	void Start () {
 		lr.enabled = false;
 		// RenderArc ();
+		m_Cam = Camera.main.transform;
 	}
 
 	void OnValidate() {
@@ -83,7 +85,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 		//Charge up throw distance (To a maximum?)
 
 		if (Input.GetMouseButton (1)) {
-
+			//m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			//Enable line renderer
 			lr.enabled = true;
 			velocity += 0.08f;
@@ -95,6 +97,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 		//When you let go, fire projectile at the angle the arc is set at
 		if (Input.GetMouseButtonUp (1)) {
+			m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			//Do stuff to fire projectile
 			GameObject launchedObject = Instantiate(projectile, transform.position, Quaternion.identity);
 			launchedObject.transform.Rotate (new Vector3(0f, 0f, angle));
@@ -105,7 +108,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 			//var vect : Vector3 = Vector3(0,1,0);
 			//vect = quat * vect;
 
-			Vector3 projectileVelocity = Vector3.forward * velocity;
+			Vector3 projectileVelocity = m_CamForward * velocity;
 
 			//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
 			Vector3 zRotatedVector = Quaternion.AngleAxis(-angle, Vector3.right) * projectileVelocity;

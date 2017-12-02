@@ -172,8 +172,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		{
 			if (m_IsGrounded && Time.deltaTime > 0)
 			{
-				//Vector3 v;
+<<<<<<< HEAD
+				Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
 				//Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
+=======
+				//Vector3 v;
+				Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
+>>>>>>> Strafe is in.
 				// we preserve the existing y part of the current velocity.
 				//move = m_Rigidbody.velocity.y;
 				//m_Rigidbody = 
@@ -252,6 +257,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(gameObject.transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
+<<<<<<< HEAD
+				//Debug.Log ("WE ARE GROUNDED");
+				//Debug.Log ("transform.position.y: " + transform.position.y);
+=======
+>>>>>>> Strafe is in.
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
