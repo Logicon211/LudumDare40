@@ -1,6 +1,9 @@
 fileFormatVersion: 2
-guid: e28113fd20a304c40b4fd514507e851d
-folderAsset: yes
+<<<<<<< HEAD
+guid: 45d138c2c6f02cf4b8279887e96bd10f
+=======
+guid: 18bdbf77b721d164d885f85b4f99832d
+>>>>>>> GOT THE ARC DISPLAYING
 timeCreated: 1512186957
 licenseType: Free
 DefaultImporter:

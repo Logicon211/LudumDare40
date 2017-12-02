@@ -16,13 +16,20 @@ public class LaunchArcRenderer : MonoBehaviour {
 	float g; //force of gravity on the y axis
 	float radianAngle;
 
+	public GameObject projectile;
+
+	public GameObject sphereObject;
+	private GameObject sphere;
+
+
 	void Awake () {
 		lr = GetComponent<LineRenderer> ();	
 		g = Mathf.Abs (Physics.gravity.y);
 	}
 	// Use this for initialization
 	void Start () {
-		RenderArc ();
+		lr.enabled = false;
+		// RenderArc ();
 	}
 
 	void OnValidate() {
@@ -34,15 +41,27 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 	// Populating the line renderer with appropriate info
 	void RenderArc() {
+		if (sphere != null) {
+			Destroy (sphere);
+		}
 		lr.SetVertexCount (resolution + 1);
 		lr.SetPositions (CalculateArcArray());
+
+		Vector3 spherePosition = new Vector3(lr.GetPosition (lr.positionCount - 1).x + transform.position.x, lr.GetPosition (lr.positionCount - 1).y + transform.position.y, lr.GetPosition (lr.positionCount - 1).z + transform.position.z);
+
+
+		sphere = (GameObject) Instantiate (sphereObject, spherePosition , Quaternion.identity);
+		sphere.transform.parent = gameObject.transform;
+		sphere.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
 	}
 
 	Vector3[] CalculateArcArray() {
 		Vector3[] arcArray = new Vector3[resolution + 1];
 
 		radianAngle = Mathf.Deg2Rad * angle;
-		float maxDistance = (velocity * velocity * Mathf.Sin (2 * radianAngle)) / g;
+
+		//https://en.wikipedia.org/wiki/Range_of_a_projectile
+		float maxDistance = ((velocity * velocity) / (2 * g)) * (1 + Mathf.Sqrt (1 + ((2 * g * this.transform.position.y) / (velocity * velocity * Mathf.Sin (radianAngle) * Mathf.Sin (radianAngle))))) * Mathf.Sin (2 * radianAngle); //(velocity * velocity * Mathf.Sin (2 * radianAngle)) / g;
 
 		for (int i = 0; i <= resolution; i++) {
 			float t = (float)i / (float) resolution;
@@ -66,6 +85,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 		if (Input.GetMouseButton (1)) {
 
 			//Enable line renderer
+			lr.enabled = true;
 			velocity += 0.08f;
 			if (velocity > velocityMax) {
 				velocity = velocityMax;
@@ -79,7 +99,11 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 			velocity = velocityStart;
 			//Disable line renderer
-			RenderArc();
+			lr.enabled = false;
+
+			if (sphere != null) {
+				Destroy (sphere);
+			}
 		}
 	}
 }
