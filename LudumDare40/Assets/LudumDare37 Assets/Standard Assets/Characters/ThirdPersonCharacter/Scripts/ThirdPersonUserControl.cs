@@ -104,7 +104,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (Input.GetKey (KeyCode.W)) {
 				v += 1;
 				slowdown = 0;
-				Debug.Log ("checking forward speed" + forwardSpeed + " vs max speed " + maxSpeed);
+				//Debug.Log ("checking forward speed" + forwardSpeed + " vs max speed " + maxSpeed);
 				if (forwardSpeed < maxSpeed) {
 					forwardSpeed += 1;
 					if (forwardSpeed > maxSpeed) {
@@ -156,7 +156,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (m_IsGrounded && Time.deltaTime > 0)
 			{
 				Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
-				Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
+				//Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
 				// we preserve the existing y part of the current velocity.
 				v.y = m_Rigidbody.velocity.y;
 				m_Rigidbody.velocity = v;
@@ -227,8 +227,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(gameObject.transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
-				Debug.Log ("WE ARE GROUNDED");
-				Debug.Log ("transform.position.y: " + transform.position.y);
+				//Debug.Log ("WE ARE GROUNDED");
+				//Debug.Log ("transform.position.y: " + transform.position.y);
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
