@@ -11,6 +11,7 @@ TagManager:
   - Baby
   - Ground
   - Projectile
+  - Door
   layers:
   - Default
   - TransparentFX
