@@ -7,7 +7,7 @@ public class carScript : MonoBehaviour {
 	Rigidbody rb;
 
 	public float speed = 10f;
-	public float m_GroundCheckDistance = 5f;
+	public float m_GroundCheckDistance = 0.1f;
 
 	private bool m_IsGrounded = false;
 
@@ -19,10 +19,12 @@ public class carScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		RaycastHit hitInfo;
-		if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+		
+		if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), -transform.up, out hitInfo, m_GroundCheckDistance))
 		{
 			m_IsGrounded = true;
-			rb.velocity = Vector3.forward * speed;
+			// rb.velocity = Vector3.forward * speed;
+			rb.velocity = transform.forward * speed; //Quaternion.AngleAxis(transform.eulerAngles.y, Vector3.up) * (Vector3.forward * speed);
 		}
 	}
 }

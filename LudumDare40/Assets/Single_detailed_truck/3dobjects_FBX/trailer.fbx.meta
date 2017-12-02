@@ -4,11 +4,77 @@ timeCreated: 18446744011573954816
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: Camera
+    100002: door_left
+    100004: door_right
+    100006: //RootNode
+    100008: trailer_main
+    100010: wheels
+    400000: Camera
+    400002: door_left
+    400004: door_right
+    400006: //RootNode
+    400008: trailer_main
+    400010: wheels
+    2300000: door_left
+    2300002: door_right
+    2300004: trailer_main
+    2300006: wheels
+    3300000: door_left
+    3300002: door_right
+    3300004: trailer_main
+    3300006: wheels
     4300000: trailer_main
     4300002: wheels
     4300004: door_right
     4300006: door_left
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: alu
+    second: {fileID: 2100000, guid: 0fc1b1b9b2d808048986fee4baf8df00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: alu_smooth
+    second: {fileID: 2100000, guid: 39cd26f538c82244b94375407e8e5f77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_chromed
+    second: {fileID: 2100000, guid: 31f17fa2e81691146b6a8ffa334b3446, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_dark
+    second: {fileID: 2100000, guid: a05683a4d61338740a1ceeb75f439213, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic
+    second: {fileID: 2100000, guid: f88f27dccb419864d88700c28c231c76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trailer_floor
+    second: {fileID: 2100000, guid: 249810e02b5b82e459309ff015c9d014, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trailer_main_color
+    second: {fileID: 2100000, guid: b7d51ee4159dca94eb79326b47fd32a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheels
+    second: {fileID: 2100000, guid: 2f1eba0767a31d4408ba75a7c4ac331a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheels_metal
+    second: {fileID: 2100000, guid: 4a26c5024b47f1c489c19d623c479c84, type: 2}
   materials:
     importMaterials: 1
     materialName: 2
