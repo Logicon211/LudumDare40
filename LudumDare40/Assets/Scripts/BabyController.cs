@@ -65,7 +65,7 @@ public class BabyController : MonoBehaviour {
 		rb.isKinematic = false;
 		collider.isTrigger = false;
 		rb.useGravity = true;
-		Vector3 launchDirection = new Vector3 (1f, 1f, 0f);
+		Vector3 launchDirection = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up) * new Vector3 (1f, 1f, 1f);
 		rb.AddForce (launchDirection * launchForce, ForceMode.Impulse);
 	}
 
