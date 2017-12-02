@@ -5,7 +5,7 @@ using UnityEngine;
 public class BabyZillaController : MonoBehaviour {
 
 	private int numberOfBabies = 0;
-	private int maxBabyCapacity = 10;
+	private int maxBabyCapacity = 20;
 	private int[] babiesAtEachLevel;
 
 	private List<Vector3> babyPositions;
@@ -27,7 +27,7 @@ public class BabyZillaController : MonoBehaviour {
 	}
 
 	private void Init () {
-		babiesAtEachLevel = new int[] { 0, 0, 0, 0 };
+		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0};
 		babyPositions = new List<Vector3> ();
 		babyPositions.Add (new Vector3 (0f, 0f, 0f));
 		babyPositions.Add (new Vector3 (1f, 0f, 0f));
@@ -51,9 +51,13 @@ public class BabyZillaController : MonoBehaviour {
 	}
 
 	private void MakeBabyChildOfBabyZilla (GameObject baby, int layer) {
-		Vector3 testPosition = babyPositions [babiesAtEachLevel [layer]];
-		testPosition.y = layer;
-		Debug.Log (testPosition);
+		Vector3 newBabyPosition = babyPositions [babiesAtEachLevel [layer]];
+		newBabyPosition.y = layer;
+		Debug.Log (newBabyPosition);
 		babiesAtEachLevel [layer]++;
+		Rigidbody babyRigidBody = baby.GetComponent<Rigidbody> ();
+		babyRigidBody.isKinematic = true;
+		baby.transform.parent = this.gameObject.transform;
+		baby.transform.position = this.gameObject.transform.position + newBabyPosition;
 	}
 }
