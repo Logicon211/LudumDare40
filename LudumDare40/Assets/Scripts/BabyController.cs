@@ -12,6 +12,7 @@ public class BabyController : MonoBehaviour {
 	private bool partOfBabyZilla;
 	private bool ejectedFromBabyZilla;
 	private Rigidbody rb;
+	private Collider collider;
 	private int babyZillaLayer;
 
 
@@ -79,5 +80,6 @@ public class BabyController : MonoBehaviour {
 	void Init () {
 		babyZilla = GameObject.FindGameObjectWithTag ("Babyzilla");
 		rb = this.gameObject.GetComponent<Rigidbody> ();
+		collider = this.gameObject.GetComponent<Collider> ();
 	}
 }
