@@ -1108,7 +1108,7 @@ GameObject:
   - component: {fileID: 1669356692}
   - component: {fileID: 1669356691}
   - component: {fileID: 1669356695}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Capsule
   m_TagString: Babyzilla
   m_Icon: {fileID: 0}
@@ -1193,6 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95068526b7b130441b5a5630d8a08547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  babyDensity: 0.5
 --- !u!1001 &1684286362
 Prefab:
   m_ObjectHideFlags: 0
