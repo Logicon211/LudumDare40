@@ -20,6 +20,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         
         private void Start()
         {
+
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 			maxSpeed = 100;
 			slowdown = 0;
 			forwardSpeed = 0;
@@ -44,9 +47,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			
 
 		void LateUpdate() {
-			//float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
+			float horizontal = Input.GetAxis("Mouse X") * 4;
 			//float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
-			//target.transform.Rotate(0, horizontal, 0);
+			target.transform.Rotate(0, horizontal, 0);
 			//m_Cam.transform.RotateAround (target.transform.position, Vector3.up, horizontal);
 			//m_Cam.transform.RotateAround (target.transform.position, Vector3.right, vertical);
 		}
