@@ -12,8 +12,9 @@ public class BabyController : MonoBehaviour {
 	private bool partOfBabyZilla;
 	private bool ejectedFromBabyZilla;
 	private Rigidbody rb;
+	private Collider collider;
 	private int babyZillaLayer;
-
+	private Vector3 rotationAngle;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class BabyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		MoveTowardsBabyZilla ();
+		SquirmOnBabyZilla ();
 	}
 
 	void MoveTowardsBabyZilla ()
@@ -40,8 +42,11 @@ public class BabyController : MonoBehaviour {
 	}
 
 	public void CombineWithBabyZilla () {
+		this.gameObject.layer = 11;
 		partOfBabyZilla = true;
 		rb.isKinematic = true;
+		collider.isTrigger = true;
+		rb.useGravity = false;
 	}
 
 	public void StartMovingTowardsBabyZilla () {
@@ -51,20 +56,24 @@ public class BabyController : MonoBehaviour {
 	}
 
 	public void EjectFromBabyZilla (Vector3 startPosition) {
+		this.gameObject.layer = 10;
 		this.gameObject.transform.parent = null;
 		this.transform.position = startPosition;
 		partOfBabyZilla = false;
 		ejectedFromBabyZilla = true;
 		speed = 0f;
 		rb.isKinematic = false;
-		Vector3 launchDirection = new Vector3 (1f, 1f, 0f);
+		collider.isTrigger = false;
+		rb.useGravity = true;
+		Vector3 launchDirection = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up) * new Vector3 (1f, 1f, 1f);
 		rb.AddForce (launchDirection * launchForce, ForceMode.Impulse);
 	}
 
 	void OnCollisionEnter(Collision col) {
 		if ( ejectedFromBabyZilla && col.gameObject.CompareTag ("Ground")) {
 			ejectedFromBabyZilla = false;
-			Invoke("StartMovingTowardsBabyZilla", 3);
+			//Figure out how to put this on a delay
+			StartMovingTowardsBabyZilla ();
 		}
 	}
 
@@ -76,8 +85,18 @@ public class BabyController : MonoBehaviour {
 		return babyZillaLayer;
 	}
 
+	private void SquirmOnBabyZilla () {
+		if (partOfBabyZilla) {
+			this.gameObject.transform.Rotate (rotationAngle * Time.deltaTime, Space.Self);
+		}
+	}
+
 	void Init () {
+		Physics.IgnoreLayerCollision (10, 11);
+		Physics.IgnoreLayerCollision (11, 12);
 		babyZilla = GameObject.FindGameObjectWithTag ("Babyzilla");
 		rb = this.gameObject.GetComponent<Rigidbody> ();
+		collider = this.gameObject.GetComponent<Collider> ();
+		rotationAngle = new Vector3 (Random.Range (-15f, 15f), Random.Range (-15f, 15f), Random.Range (-15f, 15f));
 	}
 }

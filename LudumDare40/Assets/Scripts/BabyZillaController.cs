@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BabyZillaController : MonoBehaviour {
 
-	private int maxBabyCapacity = 20;
+	public float babyDensity;
+
+	private int maxBabyCapacity = 21;
 	private int[] babiesAtEachLevel;
 
 	private List<GameObject> babyList;
@@ -29,14 +31,18 @@ public class BabyZillaController : MonoBehaviour {
 	}
 
 	private void Init () {
-		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0};
+		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		babyPositions = new List<Vector3> ();
 		babyList = new List<GameObject> ();
 		babyPositions.Add (new Vector3 (0f, 0f, 0f));
-		babyPositions.Add (new Vector3 (1f, 0f, 0f));
-		babyPositions.Add (new Vector3 (-1f, 0f, 0f));
-		babyPositions.Add (new Vector3 (0f, 0f, 1f));
-		babyPositions.Add (new Vector3 (0f, 0f, -1f));
+		babyPositions.Add (new Vector3 (babyDensity, 0f, 0f));
+		babyPositions.Add (new Vector3 (-babyDensity, 0f, 0f));
+		babyPositions.Add (new Vector3 (0f, 0f, babyDensity));
+		babyPositions.Add (new Vector3 (0f, 0f, -babyDensity));
+		babyPositions.Add (new Vector3 (babyDensity, 0f, babyDensity));
+		babyPositions.Add (new Vector3 (babyDensity, 0f, -babyDensity));
+		babyPositions.Add (new Vector3 (-babyDensity, 0f, babyDensity));
+		babyPositions.Add (new Vector3 (-babyDensity, 0f, -babyDensity));
 	}
 
 	private void AddBabyToBabyZilla (GameObject baby) {
@@ -55,9 +61,9 @@ public class BabyZillaController : MonoBehaviour {
 
 	private void MakeBabyChildOfBabyZilla (GameObject baby, int layer) {
 		Vector3 newBabyPosition = babyPositions [babiesAtEachLevel [layer]];
-		newBabyPosition.y = layer;
+		newBabyPosition.y = layer * babyDensity;
 		Debug.Log (newBabyPosition);
-		babiesAtEachLevel [layer]++;
+		++babiesAtEachLevel [layer];
 		baby.GetComponent<BabyController> ().CombineWithBabyZilla ();
 		baby.GetComponent<BabyController> ().SetBabyZillaLayer (layer);
 		babyList.Add (baby);
@@ -66,10 +72,12 @@ public class BabyZillaController : MonoBehaviour {
 	}
 
 	public void EjectBaby () {
-		GameObject babyToEject = babyList [babyList.Count - 1];
-		babyList.RemoveAt (babyList.Count - 1);
-		--babiesAtEachLevel [babyToEject.GetComponent<BabyController> ().GetBabyZillaLayer ()];
-		Vector3 startPosition = new Vector3 (0f, 6f, 0f);
-		babyToEject.GetComponent<BabyController> ().EjectFromBabyZilla (this.gameObject.transform.position + startPosition);
+		if (babyList.Count > 0) {
+			GameObject babyToEject = babyList [babyList.Count - 1];
+			babyList.RemoveAt (babyList.Count - 1);
+			--babiesAtEachLevel [babyToEject.GetComponent<BabyController> ().GetBabyZillaLayer ()];
+			Vector3 startPosition = new Vector3 (0f, 6f, 0f);
+			babyToEject.GetComponent<BabyController> ().EjectFromBabyZilla (this.gameObject.transform.position + startPosition);
+		}
 	}
 }
