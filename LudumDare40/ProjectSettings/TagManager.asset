@@ -5,16 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Light
-  - RepairableObject
-  - phone
-  - ControlPanel
-  - Nuke
-  - SF_Door
-  - Wrench
   - Spawner
   - Enemy
   - Babyzilla
   - Baby
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -24,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Projectile
+  - Player
   - 
   - 
   - 

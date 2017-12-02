@@ -96,6 +96,23 @@ public class LaunchArcRenderer : MonoBehaviour {
 		//When you let go, fire projectile at the angle the arc is set at
 		if (Input.GetMouseButtonUp (1)) {
 			//Do stuff to fire projectile
+			GameObject launchedObject = Instantiate(projectile, transform.position, Quaternion.identity);
+			launchedObject.transform.Rotate (new Vector3(0f, 0f, angle));
+			launchedObject.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
+
+			//Quaternion yRotation = Quaternion.AngleAxis(transform.rotation.eulerAngles.y,Vector3.up);
+			//Quaternion zRotation = Quaternion.AngleAxis(radianAngle,Vector3.forward);
+			//var vect : Vector3 = Vector3(0,1,0);
+			//vect = quat * vect;
+
+			Vector3 projectileVelocity = Vector3.forward * velocity;
+
+			//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
+			Vector3 zRotatedVector = Quaternion.AngleAxis(-angle, Vector3.right) * projectileVelocity;
+			Vector3 yRotatedVector = Quaternion.AngleAxis(transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
+
+			Debug.Log (zRotatedVector);
+			launchedObject.GetComponent<Rigidbody> ().velocity = yRotatedVector;
 
 			velocity = velocityStart;
 			//Disable line renderer
