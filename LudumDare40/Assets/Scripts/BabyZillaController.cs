@@ -6,7 +6,7 @@ public class BabyZillaController : MonoBehaviour {
 
 	public float babyDensity;
 
-	private int maxBabyCapacity = 21;
+	private int maxBabyCapacity = 45;
 	private int[] babiesAtEachLevel;
 
 	private List<GameObject> babyList;
