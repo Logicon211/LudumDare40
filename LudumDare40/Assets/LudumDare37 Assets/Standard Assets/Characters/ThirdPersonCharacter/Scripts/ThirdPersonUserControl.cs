@@ -10,6 +10,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         //private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
+		private Vector3 m_CamSideways;
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 		private float maxSpeed;
@@ -60,7 +61,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			maxSpeed = 10;
 			slowdown = 0;
 			forwardSpeed = 0;
-			sideSpeed = 0;
+			sideSpeed = 10;
 			m_Cam = Camera.main.transform;
 
             // get the third person character ( this should never be null due to require component )
@@ -100,47 +101,63 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			//v is vertical, only allowed to be 1, not sure how we will handle backing up
 			float v = 0;
 			float h = 0;
-			sideSpeed = 0;
+
 			if (Input.GetKey (KeyCode.W)) {
 				v += 1;
 				slowdown = 0;
 				//Debug.Log ("checking forward speed" + forwardSpeed + " vs max speed " + maxSpeed);
 				if (forwardSpeed < maxSpeed) {
-					forwardSpeed += 1;
+					forwardSpeed += 0.5f;
 					if (forwardSpeed > maxSpeed) {
 						forwardSpeed = maxSpeed;
 					}
 				}
 
-			} else {
-				if(forwardSpeed >0){
-					forwardSpeed =- slowdown;
-					slowdown += 1+ slowdown;
-					if (forwardSpeed < 0) {
-						forwardSpeed = 0;
+			} 
+
+
+			if (Input.GetKey (KeyCode.S)) {
+				v += -1;
+				slowdown = 0;
+				//Debug.Log ("checking forward speed" + forwardSpeed + " vs max speed " + maxSpeed);
+				if (forwardSpeed < maxSpeed) {
+					forwardSpeed += 0.5f;
+					if (forwardSpeed > maxSpeed) {
+						forwardSpeed = maxSpeed;
 					}
 				}
+
 			}
+
 			//Debug.Log ("forwardSpeed: " + forwardSpeed);
 			//Debug.Log ("slowdown Speed: " + slowdown);
 			if(Input.GetKey(KeyCode.A)){
 				h+=-1;
-				sideSpeed += -10;
 			}
 			if(Input.GetKey(KeyCode.D)){
 				h+=1;
-				sideSpeed += 10;
 			}
 
-			bool crouch = false; //Input.GetKey(KeyCode.C);
-
             // calculate move direction to pass to character
-                // calculate camera relative direction to move:
-                m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-				m_Move = v*m_CamForward*forwardSpeed + h*m_Cam.right*sideSpeed;
+            // calculate camera relative direction to move:
+            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+			m_CamSideways = Vector3.Scale(m_Cam.right, new Vector3(1, 0, 1)).normalized;
+			Debug.Log ("h: " + h);
+			m_Move = v*m_CamForward*forwardSpeed + h*m_CamSideways*sideSpeed;
         
-            // pass all parameters to the character control script
-            Move(m_Move, crouch, m_Jump);
+			//Vector3.Angle (m_CamForward, m_Move);
+			//transform.Rotation(Vector3.Angle (m_CamForward, m_Move));
+			//transform.rot
+            
+			transform.rotation = Quaternion.Slerp(
+				transform.rotation,
+				Quaternion.LookRotation(m_Move),
+				Time.deltaTime * 5f
+			);
+
+
+			// pass all parameters to the character control script
+            Move(m_Move, m_Jump);
             m_Jump = false;
         }
 
@@ -151,15 +168,23 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		public void Move(Vector3 move, bool crouch, bool jump)
+		public void Move(Vector3 move, bool jump)
 		{
 			if (m_IsGrounded && Time.deltaTime > 0)
 			{
-				Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
+				//Vector3 v;
 				//Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
 				// we preserve the existing y part of the current velocity.
-				v.y = m_Rigidbody.velocity.y;
-				m_Rigidbody.velocity = v;
+				//move = m_Rigidbody.velocity.y;
+				//m_Rigidbody = 
+				//v = m_Rigidbody.velocity;
+				//v.y = m_Rigidbody.velocity.y;
+				//v.x = move.x;
+				//v.z = move.z;
+				m_Rigidbody.velocity = move;
+
+
+
 			}
 
 
@@ -179,7 +204,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// control and velocity handling is different when grounded and airborne:
 			if (m_IsGrounded)
 			{
-				HandleGroundedMovement(crouch, jump);
+				HandleGroundedMovement(jump);
 			}
 			else
 			{
@@ -202,10 +227,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		void HandleGroundedMovement(bool crouch, bool jump)
+		void HandleGroundedMovement(bool jump)
 		{
 			// check whether conditions are right to allow a jump:
-			if (jump && !crouch && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+			if (jump && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
 			{
 				// jump!
 				m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
@@ -227,8 +252,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(gameObject.transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
-				//Debug.Log ("WE ARE GROUNDED");
-				//Debug.Log ("transform.position.y: " + transform.position.y);
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
