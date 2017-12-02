@@ -36,14 +36,16 @@ public class Door : MonoBehaviour
     public Color HingeColor = Color.yellow;
 
     // Define an initial and final rotation
-    Quaternion FinalRot, InitialRot;
-    int State;
+    public Quaternion FinalRot, InitialRot;
+    public int State;
 
     // Create a hinge
     GameObject hinge;
 
     // An offset to take into account the original rotation of a 3rd party door
     Quaternion RotationOffset;
+
+	public bool closed = false; 
 
     void Start()
     {
@@ -140,6 +142,9 @@ public class Door : MonoBehaviour
                 cube.GetComponent<Renderer>().material.color = HingeColor;
             }
         }
+
+		// Open door to begin with
+		if (RotationPending == false) StartCoroutine(Move());
     }
 
     // MOVE FUNCTION
