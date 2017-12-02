@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 86b968cedfe70804eb2d0026f4cc0d0c
+timeCreated: 1512193566
+=======
+guid: e76a2f1389a06e94c9a4d8d3b0786a81
+timeCreated: 1512230287
+>>>>>>> Launching projectile stuff now
+licenseType: Free
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
