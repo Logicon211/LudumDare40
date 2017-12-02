@@ -14,7 +14,7 @@ public class camera_controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		VertRotateSpeed = 3f;
+		VertRotateSpeed = -3f;
 		HoriRotateSpeed = 4f;
 		thisGameobject= GetComponent<Transform>();
 		bodyRenderer = playerObject_renderer.GetComponent<Renderer> ();
