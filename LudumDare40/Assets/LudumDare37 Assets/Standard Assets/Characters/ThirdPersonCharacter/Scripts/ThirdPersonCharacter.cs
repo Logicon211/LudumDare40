@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -191,6 +192,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_GroundNormal = Vector3.up;
 				m_Animator.applyRootMotion = false;
 			}
+		}
+
+		IEnumerator Example()
+		{
+			print(Time.time);
+			yield return new WaitForSeconds(5);
+			print(Time.time);
 		}
 	}
 }

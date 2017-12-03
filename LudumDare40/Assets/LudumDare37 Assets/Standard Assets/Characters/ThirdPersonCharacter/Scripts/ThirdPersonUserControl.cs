@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using System.Collections;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -19,7 +20,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private float slowdown;
 		public GameObject target;
 		public float rotateSpeed = 5;
-
+		public GameObject collisionCube;
+		private Rigidbody collisionCubeRigidbody;
+		private BoxCollider cubeCollider;
+		private bool charging;
+		public GameObject speedLines;
+		private float chargeCooldown =2f;
 
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
@@ -55,6 +61,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		void Start()
 		{
+			collisionCubeRigidbody = collisionCube.GetComponent<Rigidbody> ();
+			collisionCubeRigidbody.mass = 0;
+			cubeCollider = collisionCube.GetComponent<BoxCollider> ();
+			cubeCollider.enabled = false;
+			collisionCube.SetActive (false);
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
 			m_Capsule = GetComponent<CapsuleCollider>();
@@ -78,6 +89,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			transform.LookAt(target.transform);
 
 			audiosource = GetComponent<AudioSource> ();
+			speedLines.SetActive(false);
+			charging = false;
         }
 
 
@@ -104,7 +117,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
   
-
+			chargeCooldown -= 0.01f;
+			Debug.Log (chargeCooldown);
 
 			//keyboard inputs
 			//h is horizontal (-1 left, 1 rigth)
@@ -148,6 +162,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				h+=1;
 			}
 
+			if (Input.GetMouseButton (1) && m_IsGrounded && chargeCooldown <0) {
+				chargeAttack ();
+				chargeCooldown = 1.4f;
+			}
+
             // calculate move direction to pass to character
             // calculate camera relative direction to move:
             m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
@@ -188,7 +207,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public void Move(Vector3 move, bool jump)
 		{
-			if (m_IsGrounded && Time.deltaTime > 0) {
+			if (m_IsGrounded && Time.deltaTime > 0 && !charging) {
 				//Vector3 v;
 				//Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
 				// we preserve the existing y part of the current velocity.
@@ -211,7 +230,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
 
-			} else if(Time.deltaTime > 0) {
+			} else if(Time.deltaTime > 0 && !charging) {
 				move.x = m_Rigidbody.velocity.x + (move.x *0.2f);
 				move.z = m_Rigidbody.velocity.z + (move.z *0.2f);
 				move.y = m_Rigidbody.velocity.y; 
@@ -323,6 +342,26 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
+
+		void chargeAttack(){
+			Debug.Log ("charging");
+			charging = true;
+			m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+			collisionCubeRigidbody.isKinematic = false;
+			collisionCubeRigidbody.mass = 300;
+			cubeCollider.enabled = true;
+			collisionCube.SetActive (true);
+			//m_Rigidbody.drag = 0;
+			speedLines.SetActive(true);
+			m_Rigidbody.velocity = (40f * transform.forward);
+			StartCoroutine("ChargingTimer");
+
+
+		}
+
+
+
+
 		void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
@@ -358,6 +397,25 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				// don't use that while airborne
 				m_Animator.speed = 1;
 			}
+		}
+
+
+
+
+		IEnumerator ChargingTimer()
+		{
+			print("CHARGING");
+			yield return new WaitForSeconds(0.3f);
+			print("DONE CHARGING");
+			charging = false;
+			//collisionCubeRigidbody.
+			cubeCollider.enabled = false;
+			collisionCubeRigidbody.isKinematic = true;
+			collisionCubeRigidbody.mass = 0;
+			collisionCube.SetActive (false);
+			//m_Rigidbody.drag = 0.05f;
+			speedLines.SetActive(false);
+
 		}
 
     }
