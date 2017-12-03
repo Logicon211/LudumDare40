@@ -217,7 +217,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 					m_Rigidbody.velocity=v;
 				}
 
-				Debug.Log ("AIR rigidbody.x: " + m_Rigidbody.velocity.x + "   rigidbody.z: " + m_Rigidbody.velocity.z);
 
 				//m_Rigidbody.velocity.x = Mathf.Clamp(m_Rigidbody.velocity.x, -maxSpeed, maxSpeed);
 				//m_Rigidbody.velocity.y = Mathf.Clamp(m_Rigidbody.velocity.y, -maxSpeed, maxSpeed);
@@ -259,6 +258,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Rigidbody.AddForce(extraGravityForce);
 
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
+			Debug.Log ("velocity down " + m_Rigidbody.velocity.y);
 		}
 
 
@@ -293,9 +293,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 			else
 			{
+				m_IsGrounded = false;
 			//	Debug.Log ("WE ARE IN THE AIR");
 			//	Debug.Log ("transform.position.y: " + transform.position.y);
-			//	m_IsGrounded = false;
 			//m_GroundNormal = Vector3.up;
 			//	m_Animator.applyRootMotion = false;
 			}
