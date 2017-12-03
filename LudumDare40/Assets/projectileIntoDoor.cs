@@ -9,9 +9,14 @@ public class projectileIntoDoor : MonoBehaviour {
 	public Light spotLight;
 	public Light pointLight;
 
+	public AudioClip adopted;
+	public AudioClip doorShut;
+
+	private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
-		
+		audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -32,6 +37,11 @@ public class projectileIntoDoor : MonoBehaviour {
 				pointLight.enabled = false;
 
 				Destroy(other.gameObject);
+
+				audioSource.PlayOneShot (adopted);
+
+				audioSource.clip = doorShut;
+				audioSource.PlayDelayed (0.6f);
 			}
 
 		}

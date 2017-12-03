@@ -44,6 +44,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
+		public int maxNumBabies = 5;
+		public int currentNumBabies = 0;
+
+		public AudioClip jumpNoise;
+		public AudioClip footstep;
+
+		private AudioSource audiosource;
+
 
 		void Start()
 		{
@@ -68,6 +76,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //m_Character = GetComponent<ThirdPersonCharacter>();
 			transform.parent = target.transform;
 			transform.LookAt(target.transform);
+
+			audiosource = GetComponent<AudioSource> ();
         }
 
 
@@ -258,7 +268,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Rigidbody.AddForce(extraGravityForce);
 
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
-			Debug.Log ("velocity down " + m_Rigidbody.velocity.y);
 		}
 
 
@@ -268,6 +277,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (jump && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
 			{
 				// jump!
+				audiosource.PlayOneShot(jumpNoise);
 				m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
 				m_IsGrounded = false;
 				m_Animator.applyRootMotion = false;
@@ -301,7 +311,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
-
+		void OnCollisionEnter(Collision collision) {
+			if (collision.gameObject.tag == "Baby") {
+				if (!collision.gameObject.GetComponent<BabyController> ().flying) {
+					//Attach baby to Craig
+					if (currentNumBabies < maxNumBabies) {
+						currentNumBabies++;
+						Destroy (collision.gameObject);
+					}
+				}
+			}
+		}
 
 		void UpdateAnimator(Vector3 move)
 		{

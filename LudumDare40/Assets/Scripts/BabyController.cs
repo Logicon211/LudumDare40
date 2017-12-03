@@ -6,11 +6,11 @@ public class BabyController : MonoBehaviour {
 
 	public float defaultSpeed;
 	public float launchForce;
+	public bool flying;
 
 	private float speed;
 	private GameObject babyZilla;
 	private bool partOfBabyZilla;
-	private bool flying;
 	private Rigidbody rb;
 	private Collider collider;
 	private int babyZillaLayer;

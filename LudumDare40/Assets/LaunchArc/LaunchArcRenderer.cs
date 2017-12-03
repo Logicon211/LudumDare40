@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class LaunchArcRenderer : MonoBehaviour {
 
@@ -22,9 +23,13 @@ public class LaunchArcRenderer : MonoBehaviour {
 	private GameObject sphere;
 
 	public Transform m_Cam;
-	public Transform player;
+	public GameObject player;
 
 	private Vector3 m_CamForward;
+
+	public AudioClip throwNoise;
+
+	private AudioSource audioSource;
 
 
 
@@ -35,6 +40,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lr.enabled = false;
+		audioSource = GetComponent<AudioSource> ();
 		// RenderArc ();
 		//m_Cam = Camera.main.transform;
 	}
@@ -115,47 +121,52 @@ public class LaunchArcRenderer : MonoBehaviour {
 	void Update () {
 		//Charge up throw distance (To a maximum?)
 
-		if (Input.GetMouseButton (1)) {
-			//m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-			//Enable line renderer
-			lr.enabled = true;
-			velocity += 0.08f;
-			if (velocity > velocityMax) {
-				velocity = velocityMax;
+		if (player.GetComponent<ThirdPersonUserControl> ().currentNumBabies > 0) {
+			if (Input.GetMouseButton (0)) {
+				//m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+				//Enable line renderer
+				lr.enabled = true;
+				velocity += 0.08f;
+				if (velocity > velocityMax) {
+					velocity = velocityMax;
+				}
+				RenderArc ();
 			}
-			RenderArc();
-		}
 
-		//When you let go, fire projectile at the angle the arc is set at
-		if (Input.GetMouseButtonUp (1)) {
-			m_CamForward = m_Cam.forward; //Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-			//Do stuff to fire projectile
-			GameObject launchedObject = Instantiate(projectile, transform.position, Quaternion.identity);
-			launchedObject.GetComponent<BabyController> ().ThrowBaby ();
+			//When you let go, fire projectile at the angle the arc is set at
+			if (Input.GetMouseButtonUp (0)) {
+				m_CamForward = m_Cam.forward; //Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+				//Do stuff to fire projectile
+				audioSource.PlayOneShot(throwNoise);
 
-			launchedObject.transform.Rotate (new Vector3(0f, 0f, angle));
-			launchedObject.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
+				GameObject launchedObject = Instantiate (projectile, transform.position, Quaternion.identity);
+				launchedObject.GetComponent<BabyController> ().ThrowBaby ();
 
-			//Quaternion yRotation = Quaternion.AngleAxis(transform.rotation.eulerAngles.y,Vector3.up);
-			//Quaternion zRotation = Quaternion.AngleAxis(radianAngle,Vector3.forward);
-			//var vect : Vector3 = Vector3(0,1,0);
-			//vect = quat * vect;
+				launchedObject.transform.Rotate (new Vector3 (0f, 0f, angle));
+				launchedObject.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
 
-			Vector3 projectileVelocity = Vector3.forward * velocity;
-			//Vector3 projectileVelocity = m_CamForward * velocity;
+				//Quaternion yRotation = Quaternion.AngleAxis(transform.rotation.eulerAngles.y,Vector3.up);
+				//Quaternion zRotation = Quaternion.AngleAxis(radianAngle,Vector3.forward);
+				//var vect : Vector3 = Vector3(0,1,0);
+				//vect = quat * vect;
 
-			Vector3 zRotatedVector = Quaternion.AngleAxis(m_Cam.eulerAngles.x - angle, Vector3.right) * projectileVelocity;
-			//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
-			Vector3 yRotatedVector = Quaternion.AngleAxis(transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
+				Vector3 projectileVelocity = Vector3.forward * velocity;
+				//Vector3 projectileVelocity = m_CamForward * velocity;
 
-			launchedObject.GetComponent<Rigidbody> ().velocity = yRotatedVector;
+				Vector3 zRotatedVector = Quaternion.AngleAxis (m_Cam.eulerAngles.x - angle, Vector3.right) * projectileVelocity;
+				//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
+				Vector3 yRotatedVector = Quaternion.AngleAxis (transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
 
-			velocity = velocityStart;
-			//Disable line renderer
-			lr.enabled = false;
+				launchedObject.GetComponent<Rigidbody> ().velocity = yRotatedVector;
 
-			if (sphere != null) {
-				Destroy (sphere);
+				velocity = velocityStart;
+				//Disable line renderer
+				lr.enabled = false;
+				player.GetComponent<ThirdPersonUserControl> ().currentNumBabies--;
+
+				if (sphere != null) {
+					Destroy (sphere);
+				}
 			}
 		}
 	}
