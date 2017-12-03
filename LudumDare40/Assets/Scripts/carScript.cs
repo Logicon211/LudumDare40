@@ -43,7 +43,7 @@ public class carScript : MonoBehaviour {
 	}
 		
 	void OnCollisionEnter(Collision collision)	{
-		if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Car") {
+		if ( collision.gameObject.tag == "Player" || collision.gameObject.tag == "Car") {
 			audioSource.PlayOneShot (crash);
 		}
 	}

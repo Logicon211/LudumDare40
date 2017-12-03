@@ -12,10 +12,19 @@ public class truck_script : MonoBehaviour {
 	private bool m_IsGrounded = false;
 	bool timeToDie = false;
 
+	public AudioClip crash;
+	public AudioClip engine;
+	public GameObject explosion;
+	public GameObject babby;
+
+	private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		StartCoroutine ("DieTime");
+
+		audioSource = GetComponent<AudioSource> ();
 
 	}
 
@@ -38,18 +47,41 @@ public class truck_script : MonoBehaviour {
 				);
 			}
 				
+
+			if (!audioSource.isPlaying) {
+				audioSource.clip = engine;
+				audioSource.Play ();
+			}
+		} else {
+			audioSource.Stop ();
+		}
+		}
+
+	void OnCollisionEnter(Collision collision)	{
+		if (!(collision.gameObject.tag == "Ground") && !(collision.gameObject.tag =="Baby")) {
+			audioSource.PlayOneShot (crash);
+
+
+			GameObject launchedObject = Instantiate (babby, transform.position, Quaternion.identity);
+			//launchedObject.GetComponent<BabyController> ().ThrowBaby ();
+
+			GameObject launchedObject2 = Instantiate (babby, transform.position, Quaternion.identity);
+			//launchedObject2.GetComponent<BabyController> ().ThrowBaby ();
+
+			GameObject launchedObject3 = Instantiate (babby, transform.position, Quaternion.identity);
+			//launchedObject3.GetComponent<BabyController> ().ThrowBaby ();
+
+
+			Instantiate (explosion, transform.position, Quaternion.identity);
+
+			Destroy (gameObject);
 		}
 	}
 
-
-
 	IEnumerator DieTime()
 	{
-		print("CHARGING");
-		yield return new WaitForSeconds(2f);
+		
+		yield return new WaitForSeconds(3f);
 		timeToDie = true;
-		print("DONE CHARGING");
-
-
 	}
 }

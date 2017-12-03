@@ -30,8 +30,18 @@ namespace UnityStandardAssets.Effects
             }
             foreach (var rb in rigidbodies)
             {
+				//rb.add
                 rb.AddExplosionForce(explosionForce*multiplier, transform.position, r, 1*multiplier, ForceMode.Impulse);
             }
+			StartCoroutine ("DieTime");
         }
+
+
+		IEnumerator DieTime()
+		{
+
+			yield return new WaitForSeconds(3f);
+			Destroy(gameObject);
+		}
     }
 }
