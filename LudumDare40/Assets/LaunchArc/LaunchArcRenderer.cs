@@ -60,7 +60,9 @@ public class LaunchArcRenderer : MonoBehaviour {
 	Vector3[] CalculateArcArray() {
 		Vector3[] arcArray = new Vector3[resolution + 1];
 
-		radianAngle = m_Cam.rotation.z; // Mathf.Deg2Rad * angle;
+		radianAngle = Mathf.Deg2Rad * angle;
+
+		Debug.Log (transform.position.y);
 
 		//https://en.wikipedia.org/wiki/Range_of_a_projectile
 		float maxDistance = ((velocity * velocity) / (2 * g)) * (1 + Mathf.Sqrt (1 + ((2 * g * this.transform.position.y) / (velocity * velocity * Mathf.Sin (radianAngle) * Mathf.Sin (radianAngle))))) * Mathf.Sin (2 * radianAngle); //(velocity * velocity * Mathf.Sin (2 * radianAngle)) / g;
