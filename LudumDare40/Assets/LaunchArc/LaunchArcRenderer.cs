@@ -52,14 +52,21 @@ public class LaunchArcRenderer : MonoBehaviour {
 			Destroy (sphere);
 		}
 		lr.SetVertexCount (resolution + 1);
-		lr.SetPositions (CalculateArcArray());
+		Vector3[] positions = CalculateArcArray ();
 
-		Vector3 spherePosition = new Vector3(lr.GetPosition (lr.positionCount - 1).x + transform.position.x, lr.GetPosition (lr.positionCount - 1).y + transform.position.y, lr.GetPosition (lr.positionCount - 1).z + transform.position.z);
+		//If positions isn't null then we have a valid path to draw
+
+		if (positions != null) {
+			lr.SetPositions (positions);
+			Vector3 spherePosition = new Vector3 (lr.GetPosition (lr.positionCount - 1).x + transform.position.x, lr.GetPosition (lr.positionCount - 1).y + transform.position.y, lr.GetPosition (lr.positionCount - 1).z + transform.position.z);
 
 
-		sphere = (GameObject) Instantiate (sphereObject, spherePosition , Quaternion.identity);
-		sphere.transform.parent = gameObject.transform;
-		sphere.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
+			sphere = (GameObject)Instantiate (sphereObject, spherePosition, Quaternion.identity);
+			sphere.transform.parent = gameObject.transform;
+			sphere.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
+		} else {
+			lr.enabled = false;
+		}
 	}
 
 	Vector3[] CalculateArcArray() {
@@ -69,33 +76,32 @@ public class LaunchArcRenderer : MonoBehaviour {
 		//Quaternion.LookRotation (transform.parent.rotation);
 		transform.eulerAngles = new Vector3 (transform.eulerAngles.x, m_Cam.eulerAngles.y - 90f, transform.eulerAngles.z);
 
-		//radianAngle = Mathf.Deg2Rad * angle;
 
-		//float testAngle = m_Cam.localEulerAngles.x;
-		//testAngle = (testAngle > 180) ? testAngle - 360 : testAngle;
-		//Debug.Log (testAngle);
-
-		if (-m_Cam.eulerAngles.x >= -61f) {
-			//Debug.Log(m_Cam.eulerAngles.x);
-			radianAngle = Mathf.Deg2Rad * (-m_Cam.eulerAngles.x - 270f/* - angle*/);//Mathf.Deg2Rad * angle;
+		Debug.Log (-m_Cam.eulerAngles.x - angle);
+		if (-m_Cam.eulerAngles.x - angle >= -61f - angle && -m_Cam.eulerAngles.x - angle < -60f) {
+			// This means we're arming below 0 degrees, the algorithm that draws the trajectory can't deal with this yet
+			radianAngle = 999f;//Mathf.Deg2Rad * (-m_Cam.eulerAngles.x/* - angle*/);
 		} else {
-			//Debug.Log(-m_Cam.eulerAngles.x);
-			radianAngle = Mathf.Deg2Rad * (-m_Cam.eulerAngles.x/* - angle*/);//Mathf.Deg2Rad * angle;
+			radianAngle = Mathf.Deg2Rad * (-m_Cam.eulerAngles.x + angle);
 		}
 
-		radianAngle = Mathf.Deg2Rad * -179f;//(-testAngle + 60f);
+		//radianAngle = Mathf.Deg2Rad * -179f;//(-testAngle + 60f);
 			
-		Debug.Log (radianAngle);
+		//Debug.Log (radianAngle);
 
 		//https://en.wikipedia.org/wiki/Range_of_a_projectile
-		float maxDistance = ((velocity * velocity) / (2 * g)) * (1 + Mathf.Sqrt (1 + ((2 * g * this.transform.position.y) / (velocity * velocity * Mathf.Sin (radianAngle) * Mathf.Sin (radianAngle))))) * Mathf.Sin (2 * radianAngle); //(velocity * velocity * Mathf.Sin (2 * radianAngle)) / g;
+		if (radianAngle != 999f) {
+			float maxDistance = ((velocity * velocity) / (2 * g)) * (1 + Mathf.Sqrt (1 + ((2 * g * this.transform.position.y) / (velocity * velocity * Mathf.Sin (radianAngle) * Mathf.Sin (radianAngle))))) * Mathf.Sin (2 * radianAngle); //(velocity * velocity * Mathf.Sin (2 * radianAngle)) / g;
 
-		for (int i = 0; i <= resolution; i++) {
-			float t = (float)i / (float) resolution;
-			arcArray [i] = CalculateArcPoint (t, maxDistance);
+			for (int i = 0; i <= resolution; i++) {
+				float t = (float)i / (float)resolution;
+				arcArray [i] = CalculateArcPoint (t, maxDistance);
+			}
+
+			return arcArray;
+		} else {
+			return null;
 		}
-
-		return arcArray;
 	}
 
 	//calcluate height and distance of each vertex
@@ -136,7 +142,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 			Vector3 projectileVelocity = Vector3.forward * velocity;
 			//Vector3 projectileVelocity = m_CamForward * velocity;
 
-			Vector3 zRotatedVector = Quaternion.AngleAxis(m_Cam.eulerAngles.x/* - angle*/, Vector3.right) * projectileVelocity;
+			Vector3 zRotatedVector = Quaternion.AngleAxis(m_Cam.eulerAngles.x - angle, Vector3.right) * projectileVelocity;
 			//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
 			Vector3 yRotatedVector = Quaternion.AngleAxis(transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
 
