@@ -6,7 +6,7 @@ public class BabyZillaController : MonoBehaviour {
 
 	public float babyDensity;
 
-	private int maxBabyCapacity = 35;
+	private int maxBabyCapacity = 91;
 	private int[] babiesAtEachLevel;
 
 	private List<GameObject> babyList;
@@ -33,7 +33,7 @@ public class BabyZillaController : MonoBehaviour {
 
 	private void Init () {
 		gameController = GameObject.FindGameObjectWithTag ("GameController");
-		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		babyPositions = new List<Vector3> ();
 		babyList = new List<GameObject> ();
 		babyPositions.Add (new Vector3 (0f, 0f, 0f));
@@ -45,6 +45,10 @@ public class BabyZillaController : MonoBehaviour {
 		babyPositions.Add (new Vector3 (babyDensity, 0f, -babyDensity));
 		babyPositions.Add (new Vector3 (-babyDensity, 0f, babyDensity));
 		babyPositions.Add (new Vector3 (-babyDensity, 0f, -babyDensity));
+		babyPositions.Add (new Vector3 (2 * babyDensity, 0f, 0f));
+		babyPositions.Add (new Vector3 (2 * -babyDensity, 0f, 0f));
+		babyPositions.Add (new Vector3 (0f, 0f, 2 * babyDensity));
+		babyPositions.Add (new Vector3 (0f, 0f, 2 * -babyDensity));
 	}
 
 	private void AddBabyToBabyZilla (GameObject baby) {
