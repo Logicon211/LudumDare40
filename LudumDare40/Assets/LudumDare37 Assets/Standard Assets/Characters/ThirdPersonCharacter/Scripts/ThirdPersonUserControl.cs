@@ -118,7 +118,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
   
 			chargeCooldown -= 0.01f;
-			Debug.Log (chargeCooldown);
 
 			//keyboard inputs
 			//h is horizontal (-1 left, 1 rigth)
