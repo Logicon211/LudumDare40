@@ -198,13 +198,13 @@ Prefab:
         type: 2}
       propertyPath: sprite.Array.data[6]
       value: 
-      objectReference: {fileID: 21300000, guid: 921c2d35197bd594e9a25a15ef80bd15,
+      objectReference: {fileID: 21300000, guid: 07eb448fd031ec7408de0956d90e699d,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[7]
       value: 
-      objectReference: {fileID: 21300000, guid: f5dbf005959c78b4181b072f1733e018,
+      objectReference: {fileID: 21300000, guid: 5385dcff5e51d064a8459eb11a278b76,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
@@ -258,7 +258,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 921c2d35197bd594e9a25a15ef80bd15,
+      objectReference: {fileID: 21300000, guid: 07eb448fd031ec7408de0956d90e699d,
         type: 3}
     - target: {fileID: 212719801417337934, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
