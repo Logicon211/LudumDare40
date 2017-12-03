@@ -24,7 +24,6 @@ public class BabyOverlord : MonoBehaviour {
     // Use this for initialization
     void Start() {
         timer = maxTimer;
-		ActivateArmageddon ();
     }
 
     // Update is called once per frame
