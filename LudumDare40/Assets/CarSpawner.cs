@@ -21,7 +21,21 @@ public class CarSpawner : MonoBehaviour {
 		if (currentTime >= spawnTime) {
 			currentTime = 0f;
 
-			int carIndex = Random.Range (0, cars.Length);
+			int carIndex = Random.Range (0, cars.Length*3);
+
+
+			Debug.Log (carIndex);
+			if (carIndex < 3) {
+				carIndex = 0;
+			} else if (carIndex < 6) {
+				carIndex = 1;
+			} else if (carIndex < 9) {
+				carIndex = 2;
+			} else {
+				carIndex = 3;
+			}
+
+
 
 			GameObject car = Instantiate (cars [carIndex], transform.position, Quaternion.identity);
 			car.transform.rotation = transform.rotation;
