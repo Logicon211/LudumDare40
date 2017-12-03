@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Projectile
   - Door
+  - Metldown Slider
   layers:
   - Default
   - TransparentFX

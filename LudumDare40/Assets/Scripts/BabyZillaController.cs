@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BabyZillaController : MonoBehaviour {
 
 	public float babyDensity;
 
-	private int maxBabyCapacity = 91;
+	//NO MORE THAN 91
+	public int maxBabyCapacity = 91;
 	private int[] babiesAtEachLevel;
 
 	private List<GameObject> babyList;
 	private List<Vector3> babyPositions;
 	private GameObject gameController;
+
+	public Slider meltdownSlider;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +40,8 @@ public class BabyZillaController : MonoBehaviour {
 		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		babyPositions = new List<Vector3> ();
 		babyList = new List<GameObject> ();
+		meltdownSlider.maxValue = maxBabyCapacity;
+		meltdownSlider.value = 0;
 		babyPositions.Add (new Vector3 (0f, 0f, 0f));
 		babyPositions.Add (new Vector3 (babyDensity, 0f, 0f));
 		babyPositions.Add (new Vector3 (-babyDensity, 0f, 0f));
@@ -61,6 +67,7 @@ public class BabyZillaController : MonoBehaviour {
 
 			if (babyList.Count < maxBabyCapacity) {
 				MakeBabyChildOfBabyZilla (baby, currentLayer);
+				meltdownSlider.value = babyList.Count;
 			} else {
 				gameController.GetComponent<GameController> ().Lose ();
 			}
