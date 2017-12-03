@@ -13,6 +13,7 @@ TagManager:
   - Projectile
   - Door
   - Car
+  - Metldown Slider
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - BabyZilla
   - Tunnel
   - Car
-  - 
+  - ChargeLayer
   - 
   - 
   - 

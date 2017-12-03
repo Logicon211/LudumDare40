@@ -14,7 +14,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private Vector3 m_CamSideways;
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
-		private float maxSpeed;
+		public float maxSpeed;
+		public float currentMaxSpeed;
 		private float forwardSpeed;
 		private float sideSpeed;
 		private float slowdown;
@@ -23,7 +24,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		public GameObject collisionCube;
 		private Rigidbody collisionCubeRigidbody;
 		private BoxCollider cubeCollider;
-		private bool charging;
+		public bool charging;
 		public GameObject speedLines;
 		private float chargeCooldown =2f;
 
@@ -78,6 +79,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 			maxSpeed = 10;
+			currentMaxSpeed = 10;
 			slowdown = 0;
 			forwardSpeed = 0;
 			sideSpeed = 10;
@@ -116,7 +118,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-  
+
 			chargeCooldown -= 0.01f;
 
 			//keyboard inputs
@@ -129,10 +131,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				v += 1;
 				slowdown = 0;
 				//Debug.Log ("checking forward speed" + forwardSpeed + " vs max speed " + maxSpeed);
-				if (forwardSpeed < maxSpeed) {
+				if (forwardSpeed < currentMaxSpeed) {
 					forwardSpeed += 0.5f;
-					if (forwardSpeed > maxSpeed) {
-						forwardSpeed = maxSpeed;
+					if (forwardSpeed > currentMaxSpeed) {
+						forwardSpeed = currentMaxSpeed;
 					}
 				}
 
@@ -143,10 +145,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				v += -1;
 				slowdown = 0;
 				//Debug.Log ("checking forward speed" + forwardSpeed + " vs max speed " + maxSpeed);
-				if (forwardSpeed < maxSpeed) {
+				if (forwardSpeed < currentMaxSpeed) {
 					forwardSpeed += 0.5f;
-					if (forwardSpeed > maxSpeed) {
-						forwardSpeed = maxSpeed;
+					if (forwardSpeed > currentMaxSpeed) {
+						forwardSpeed = currentMaxSpeed;
 					}
 				}
 
@@ -199,8 +201,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
 
-		public void maxSpeedChange(int SpeedVariation){
-			maxSpeed += SpeedVariation;
+		public void maxSpeedChange(){
+			currentMaxSpeed = maxSpeed * (1 - (currentNumBabies * 0.15f));
 		}
 
 
@@ -218,9 +220,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				//v.z = move.z;
 				m_Rigidbody.velocity = move;
 				Vector3 v = new Vector3 (m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
-				if(v.magnitude > maxSpeed)
+				if(v.magnitude > currentMaxSpeed)
 				{
-					v = v.normalized * maxSpeed;
+					v = v.normalized * currentMaxSpeed;
 					v.y = m_Rigidbody.velocity.y;
 					m_Rigidbody.velocity=v;
 				}
@@ -238,9 +240,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				//Debug.Log ("MOVE.Y: " + move.y +"  MOVE.X: " + move.y + "  maxspeed: " + maxSpeed);
 				m_Rigidbody.velocity = move;
 				Vector3 v = new Vector3 (m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
-				if(v.magnitude > maxSpeed)
+				if(v.magnitude > currentMaxSpeed)
 				{
-					v = v.normalized * maxSpeed;
+					v = v.normalized * currentMaxSpeed;
 					v.y = m_Rigidbody.velocity.y;
 					m_Rigidbody.velocity=v;
 				}
@@ -335,6 +337,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 					//Attach baby to Craig
 					if (currentNumBabies < maxNumBabies) {
 						currentNumBabies++;
+						maxSpeedChange ();
 						Destroy (collision.gameObject);
 					}
 				}
