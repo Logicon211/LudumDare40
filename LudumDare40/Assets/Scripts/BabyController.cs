@@ -65,6 +65,7 @@ public class BabyController : MonoBehaviour {
 	}
 
 	public void ThrowBaby () {
+		Init ();
 		InitBabyFlying ();
 	}
 

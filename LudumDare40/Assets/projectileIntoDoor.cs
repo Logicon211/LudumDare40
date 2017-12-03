@@ -21,7 +21,7 @@ public class projectileIntoDoor : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		if (other.tag == "Projectile") {
+		if (other.tag == "Baby") {
 
 			//If it's not already closed
 			if (door.State != 1) {

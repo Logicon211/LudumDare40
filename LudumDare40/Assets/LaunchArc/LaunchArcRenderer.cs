@@ -131,6 +131,8 @@ public class LaunchArcRenderer : MonoBehaviour {
 			m_CamForward = m_Cam.forward; //Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			//Do stuff to fire projectile
 			GameObject launchedObject = Instantiate(projectile, transform.position, Quaternion.identity);
+			launchedObject.GetComponent<BabyController> ().ThrowBaby ();
+
 			launchedObject.transform.Rotate (new Vector3(0f, 0f, angle));
 			launchedObject.transform.RotateAround (transform.position, Vector3.up, transform.rotation.eulerAngles.y);
 
