@@ -71,7 +71,6 @@ public class BabyZillaController : MonoBehaviour {
 		int babiesAtLevel = babiesAtEachLevel [layer];
 		Vector3 newBabyPosition = babyPositions [babiesAtLevel];
 		newBabyPosition.y = layer * babyDensity;
-		Debug.Log (newBabyPosition);
 		++babiesAtEachLevel [layer];
 		baby.GetComponent<BabyController> ().CombineWithBabyZilla ();
 		baby.GetComponent<BabyController> ().SetBabyZillaLayer (layer);

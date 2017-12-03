@@ -16,10 +16,17 @@ public class BabyController : MonoBehaviour {
 	private int babyZillaLayer;
 	private Vector3 rotationAngle;
 
+	void Awake () {
+		Init ();
+	}
+
 	// Use this for initialization
 	void Start () {
 		Init ();
-		StartMovingTowardsBabyZilla ();
+		Debug.Log (flying);
+		if (!flying) {
+			StartMovingTowardsBabyZilla ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -31,7 +38,7 @@ public class BabyController : MonoBehaviour {
 	void MoveTowardsBabyZilla ()
 	{
 		if (!partOfBabyZilla && !flying) {
-			float step = defaultSpeed * Time.deltaTime;
+			float step = speed * Time.deltaTime;
 			this.transform.position = Vector3.MoveTowards (this.transform.position, babyZilla.transform.position, step);
 		}
 	}
@@ -65,7 +72,7 @@ public class BabyController : MonoBehaviour {
 	}
 
 	public void ThrowBaby () {
-		Init ();
+		//Init ();
 		InitBabyFlying ();
 	}
 

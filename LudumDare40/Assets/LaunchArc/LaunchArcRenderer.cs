@@ -77,7 +77,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 		transform.eulerAngles = new Vector3 (transform.eulerAngles.x, m_Cam.eulerAngles.y - 90f, transform.eulerAngles.z);
 
 
-		Debug.Log (-m_Cam.eulerAngles.x - angle);
+		//Debug.Log (-m_Cam.eulerAngles.x - angle);
 		if (-m_Cam.eulerAngles.x - angle >= -61f - angle && -m_Cam.eulerAngles.x - angle < -60f) {
 			// This means we're arming below 0 degrees, the algorithm that draws the trajectory can't deal with this yet
 			radianAngle = 999f;//Mathf.Deg2Rad * (-m_Cam.eulerAngles.x/* - angle*/);
@@ -148,7 +148,6 @@ public class LaunchArcRenderer : MonoBehaviour {
 			//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
 			Vector3 yRotatedVector = Quaternion.AngleAxis(transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
 
-			Debug.Log (zRotatedVector);
 			launchedObject.GetComponent<Rigidbody> ().velocity = yRotatedVector;
 
 			velocity = velocityStart;
