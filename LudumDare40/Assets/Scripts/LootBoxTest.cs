@@ -16,18 +16,7 @@ public class LootBoxTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown("space")) {
-            if (!isOpen) {
-                Debug.Log("FUCK");
-                lootBox.ActivateLootBox();
-                isOpen = !isOpen;
-            }
-            else {
-                Debug.Log("FUCK");
-                lootBox.DeactivateLootBox();
-                isOpen = !isOpen;
-            }
-        }
+		
         if (Input.GetKeyDown("p")) {
             bird.DropLootBox();
         }

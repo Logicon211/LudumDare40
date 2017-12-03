@@ -8,6 +8,8 @@ public class LootBox : MonoBehaviour {
     public AudioSource audio;
     public Animator anim;
 
+    private bool isOpen = false;
+
     public bool testEnabled;
 
 	// Use this for initialization
@@ -16,8 +18,19 @@ public class LootBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
+        if (Input.GetKeyDown("space")) {
+            if (!isOpen) {
+                Debug.Log("FUCK");
+                ActivateLootBox();
+                isOpen = !isOpen;
+            }
+            else {
+                Debug.Log("FUCK");
+                DeactivateLootBox();
+                isOpen = !isOpen;
+            }
+        }
+    }
 
     public void ActivateLootBox() {
         ChangeAnimationState(1);

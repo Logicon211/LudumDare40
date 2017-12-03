@@ -13,12 +13,12 @@ public class BirdManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
+    }
 
     public void DropLootBox() {
         Rigidbody box;
-        box = Instantiate(lootBox, transform.position, transform.rotation) as Rigidbody;
+        box = Instantiate(lootBox, transform.position, Quaternion.identity) as Rigidbody;
         //Rigidbody boxBody = box.GetComponent<Rigidbody>();
         
         //boxBody.velocity = transform.TransformDirection(Vector3.forward * 10);
