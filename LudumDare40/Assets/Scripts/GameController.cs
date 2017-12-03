@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -35,7 +36,9 @@ public class GameController : MonoBehaviour {
 		//Something happens when you lose
 
 		//Wait a bit before instantly losing?
-		LoadingScreenManager.LoadScene(4);
+
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		//LoadingScreenManager.LoadScene(4);
 		Debug.Log ("You Lose");
 	}
 }

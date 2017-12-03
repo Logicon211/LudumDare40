@@ -54,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1792560454441034}
   m_LocalRotation: {x: -0, y: -0.91773707, z: -0, w: 0.3971885}
-  m_LocalPosition: {x: 74.55597, y: 0.598, z: 63.862648}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -32.46581, y: 0.338, z: 17.203255}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 4434999463626892}
   m_Father: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95068526b7b130441b5a5630d8a08547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  babyDensity: 0.8
+  babyDensity: 0.25
   maxBabyCapacity: 91
   meltdownSlider: {fileID: 0}
 --- !u!198 &198487982027462414
@@ -203,7 +203,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 2115327143
+  randomSeed: -1560160339
   InitialModule:
     serializedVersion: 3
     enabled: 1

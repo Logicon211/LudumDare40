@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 82031207330378502}
   m_Layer: 9
   m_Name: ThirdPersonController_version3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2821,7 +2821,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -2992,7 +2992,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3072,7 +3072,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3741,8 +3741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0ea03eff3ea8846ae08ec2852b1b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
-  velocityMax: 10
+  velocity: 7
+  velocityMax: 18
   velocityStart: 5
   angle: 30
   resolution: 15
