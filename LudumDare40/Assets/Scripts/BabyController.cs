@@ -73,6 +73,7 @@ public class BabyController : MonoBehaviour {
 
 	public void ThrowBaby () {
 		//Init ();
+		StartCoroutine("disableHitBox");
 		InitBabyFlying ();
 	}
 
@@ -120,5 +121,12 @@ public class BabyController : MonoBehaviour {
 		rb = this.gameObject.GetComponent<Rigidbody> ();
 		collider = this.gameObject.GetComponent<Collider> ();
 		rotationAngle = new Vector3 (Random.Range (-15f, 15f), Random.Range (-15f, 15f), Random.Range (-15f, 15f));
+	}
+
+	IEnumerator disableHitBox()
+	{
+		GetComponent<CapsuleCollider> ().enabled = false;
+		yield return new WaitForSeconds(0.2f);
+		GetComponent<CapsuleCollider> ().enabled = true;
 	}
 }
