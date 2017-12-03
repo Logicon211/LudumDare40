@@ -11,7 +11,11 @@ public class IntroSpriteFlow : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	public GUITexture gui;
 
+	public AudioSource audioSource;
+	public AudioClip jingle;
+
 	public int levelToLoadIndex;
+	public int slideToStopMusicAndJingle = 0;
 
 	void Start ()
 	{
@@ -36,6 +40,12 @@ public class IntroSpriteFlow : MonoBehaviour
 		if (Input.anyKeyDown) {//.GetKeyDown(KeyCode.RightArrow)) {
 			if(sceneEnding < sprite.Length){
 				sceneEnding++;
+				//Stop music and play jingle;
+				if (sceneEnding == slideToStopMusicAndJingle && audioSource != null) {
+					Debug.Log ("JINGLE");
+					audioSource.Stop();
+					audioSource.PlayOneShot (jingle);
+				}
 			}
 			//Application.LoadLevel();
 		}
@@ -59,7 +69,6 @@ public class IntroSpriteFlow : MonoBehaviour
 	void FadeToClear ()
 	{
 		// Lerp the colour of the texture between itself and transparent.
-		Debug.Log(Time.deltaTime);
 		if(Time.deltaTime < 0.1f) {
 			GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, Color.clear, fadeSpeed * Time.deltaTime);
 		} else {
