@@ -178,8 +178,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public void Move(Vector3 move, bool jump)
 		{
-			if (m_IsGrounded && Time.deltaTime > 0)
-			{
+			if (m_IsGrounded && Time.deltaTime > 0) {
 				//Vector3 v;
 				//Debug.Log ("move.x: " + move.x + "   move.y: " + move.y + "     move.z: " + move.z);
 				// we preserve the existing y part of the current velocity.
@@ -190,11 +189,39 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				//v.x = move.x;
 				//v.z = move.z;
 				m_Rigidbody.velocity = move;
+				Vector3 v = new Vector3 (m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
+				if(v.magnitude > maxSpeed)
+				{
+					v = v.normalized * maxSpeed;
+					v.y = m_Rigidbody.velocity.y;
+					m_Rigidbody.velocity=v;
+				}
+
+				//Debug.Log ("GROUND rigidbody.x: " + m_Rigidbody.velocity.x + "   rigidbody.z: " + m_Rigidbody.velocity.z);
 
 
 
+			} else if(Time.deltaTime > 0) {
+				move.x = m_Rigidbody.velocity.x + (move.x *0.2f);
+				move.z = m_Rigidbody.velocity.z + (move.z *0.2f);
+				move.y = m_Rigidbody.velocity.y; 
+				//move.x = Mathf.Clamp(move.x, -maxSpeed, maxSpeed);
+				//move.z = Mathf.Clamp(move.z, -maxSpeed, maxSpeed);
+				//Debug.Log ("MOVE.Y: " + move.y +"  MOVE.X: " + move.y + "  maxspeed: " + maxSpeed);
+				m_Rigidbody.velocity = move;
+				Vector3 v = new Vector3 (m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
+				if(v.magnitude > maxSpeed)
+				{
+					v = v.normalized * maxSpeed;
+					v.y = m_Rigidbody.velocity.y;
+					m_Rigidbody.velocity=v;
+				}
+
+				Debug.Log ("AIR rigidbody.x: " + m_Rigidbody.velocity.x + "   rigidbody.z: " + m_Rigidbody.velocity.z);
+
+				//m_Rigidbody.velocity.x = Mathf.Clamp(m_Rigidbody.velocity.x, -maxSpeed, maxSpeed);
+				//m_Rigidbody.velocity.y = Mathf.Clamp(m_Rigidbody.velocity.y, -maxSpeed, maxSpeed);
 			}
-
 
 
 			// convert the world relative moveInput vector into a local-relative
@@ -269,7 +296,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			//	Debug.Log ("WE ARE IN THE AIR");
 			//	Debug.Log ("transform.position.y: " + transform.position.y);
 			//	m_IsGrounded = false;
-//m_GroundNormal = Vector3.up;
+			//m_GroundNormal = Vector3.up;
 			//	m_Animator.applyRootMotion = false;
 			}
 		}
