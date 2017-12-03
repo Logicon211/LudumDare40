@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -56,6 +57,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public AudioClip jumpNoise;
 		public AudioClip footstep;
+
+		public Slider chargeSlider;
 
 		private AudioSource audiosource;
 
@@ -120,6 +123,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
 
 			chargeCooldown -= 0.01f;
+			chargeSlider.value = Math.Min (1.5f, 1.5f - chargeCooldown);
+			chargeSlider.enabled = false;
 
 			//keyboard inputs
 			//h is horizontal (-1 left, 1 rigth)
