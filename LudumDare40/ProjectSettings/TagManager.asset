@@ -12,7 +12,7 @@ TagManager:
   - Ground
   - Projectile
   - Door
-  - Metldown Slider
+  - Car
   layers:
   - Default
   - TransparentFX
@@ -27,8 +27,8 @@ TagManager:
   - Baby
   - BabyOnBabyZilla
   - BabyZilla
-  - 
-  - 
+  - Tunnel
+  - Car
   - 
   - 
   - 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4060188934905954}
   - component: {fileID: 33376300220378166}
   - component: {fileID: 23642992258288280}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,9 +39,9 @@ GameObject:
   - component: {fileID: 54930466907647834}
   - component: {fileID: 65057492083820926}
   - component: {fileID: 114070192710841876}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bus_2
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4864095260120678}
   - component: {fileID: 33406653618728720}
   - component: {fileID: 23570685843348466}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4281212104086898}
   - component: {fileID: 33957090880878888}
   - component: {fileID: 23504213003015014}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4441803316494160}
   - component: {fileID: 33659131430854544}
   - component: {fileID: 23952145281877750}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4504204174394356}
   - component: {fileID: 33171895518226908}
   - component: {fileID: 23678406871632142}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object022
   m_TagString: Untagged
   m_Icon: {fileID: 0}

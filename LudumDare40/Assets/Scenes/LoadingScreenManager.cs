@@ -37,7 +37,7 @@ public class LoadingScreenManager : MonoBehaviour {
 
 	public static int sceneToLoad = -1;
 	// IMPORTANT! This is the build index of your loading scene. You need to change this to match your actual scene index
-	static int loadingSceneIndex = 3;
+	static int loadingSceneIndex = 1;
 
 	public static void LoadScene(int levelNum) {				
 		Application.backgroundLoadingPriority = ThreadPriority.High;

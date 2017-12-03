@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4207855655976596}
   - component: {fileID: 33740972186508954}
   - component: {fileID: 23992605705049274}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4783549446565800}
   - component: {fileID: 33933092494441218}
   - component: {fileID: 23423741405913658}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4053018542282154}
   - component: {fileID: 33618256885586360}
   - component: {fileID: 23885697613467406}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,9 +73,9 @@ GameObject:
   - component: {fileID: 54041308823878408}
   - component: {fileID: 65309251328233190}
   - component: {fileID: 114350791422806480}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Car_4
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4833288452162708}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4568348069606002}
   - component: {fileID: 33946637910824412}
   - component: {fileID: 23414085353993182}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4500138852011154}
   - component: {fileID: 33065205595775692}
   - component: {fileID: 23331617918667664}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Object008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
