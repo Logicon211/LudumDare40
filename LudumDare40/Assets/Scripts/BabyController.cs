@@ -10,7 +10,7 @@ public class BabyController : MonoBehaviour {
 	private float speed;
 	private GameObject babyZilla;
 	private bool partOfBabyZilla;
-	private bool ejectedFromBabyZilla;
+	private bool flying;
 	private Rigidbody rb;
 	private Collider collider;
 	private int babyZillaLayer;
@@ -30,7 +30,7 @@ public class BabyController : MonoBehaviour {
 
 	void MoveTowardsBabyZilla ()
 	{
-		if (!partOfBabyZilla && !ejectedFromBabyZilla) {
+		if (!partOfBabyZilla && !flying) {
 			float step = defaultSpeed * Time.deltaTime;
 			this.transform.position = Vector3.MoveTowards (this.transform.position, babyZilla.transform.position, step);
 		}
@@ -38,7 +38,6 @@ public class BabyController : MonoBehaviour {
 
 	public void SetPartOfBabyZilla (bool partOfBabyZilla) {
 		this.partOfBabyZilla = partOfBabyZilla;
-		Debug.Log (this.gameObject.name + " part of BabyZilla: " + this.partOfBabyZilla);
 	}
 
 	public void CombineWithBabyZilla () {
@@ -50,7 +49,7 @@ public class BabyController : MonoBehaviour {
 	}
 
 	public void StartMovingTowardsBabyZilla () {
-		ejectedFromBabyZilla = false;
+		flying = false;
 		partOfBabyZilla = false;
 		speed = defaultSpeed;
 	}
@@ -60,20 +59,35 @@ public class BabyController : MonoBehaviour {
 		this.gameObject.transform.parent = null;
 		this.transform.position = startPosition;
 		partOfBabyZilla = false;
-		ejectedFromBabyZilla = true;
-		speed = 0f;
-		rb.isKinematic = false;
-		collider.isTrigger = false;
-		rb.useGravity = true;
+		InitBabyFlying ();
 		Vector3 launchDirection = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up) * new Vector3 (1f, 1f, 1f);
 		rb.AddForce (launchDirection * launchForce, ForceMode.Impulse);
 	}
 
+	public void ThrowBaby () {
+		InitBabyFlying ();
+	}
+
+	private void InitBabyFlying ()
+	{
+		flying = true;
+		speed = 0f;
+		rb.isKinematic = false;
+		collider.isTrigger = false;
+		rb.useGravity = true;
+	}
+
 	void OnCollisionEnter(Collision col) {
-		if ( ejectedFromBabyZilla && col.gameObject.CompareTag ("Ground")) {
-			ejectedFromBabyZilla = false;
+		if (flying && col.gameObject.CompareTag ("Ground")) {
+			flying = false;
 			//Figure out how to put this on a delay
 			StartMovingTowardsBabyZilla ();
+		}
+	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.gameObject.CompareTag ("Door")) {
+			//Call method in game controller to progress towards winning.
 		}
 	}
 

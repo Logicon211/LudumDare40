@@ -6,11 +6,12 @@ public class BabyZillaController : MonoBehaviour {
 
 	public float babyDensity;
 
-	private int maxBabyCapacity = 45;
+	private int maxBabyCapacity = 35;
 	private int[] babiesAtEachLevel;
 
 	private List<GameObject> babyList;
 	private List<Vector3> babyPositions;
+	private GameObject gameController;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,7 @@ public class BabyZillaController : MonoBehaviour {
 	}
 
 	private void Init () {
+		gameController = GameObject.FindGameObjectWithTag ("GameController");
 		babiesAtEachLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		babyPositions = new List<Vector3> ();
 		babyList = new List<GameObject> ();
@@ -56,7 +58,7 @@ public class BabyZillaController : MonoBehaviour {
 			if (babyList.Count < maxBabyCapacity) {
 				MakeBabyChildOfBabyZilla (baby, currentLayer);
 			} else {
-//			Some lose condition
+				gameController.GetComponent<GameController> ().Lose ();
 			}
 		}
 	}
