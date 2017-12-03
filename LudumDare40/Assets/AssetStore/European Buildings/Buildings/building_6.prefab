@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3394220}
   - component: {fileID: 2325736}
   - component: {fileID: 6439216}
+  - component: {fileID: 65369368257395890}
   m_Layer: 0
   m_Name: building_6
   m_TagString: Untagged
@@ -24,13 +25,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.63367295, y: 0.5188781, z: 0.5330612}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 12.0861225, y: -0.8713722, z: 50.781723}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &2325736
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -87,7 +88,7 @@ MeshCollider:
   m_GameObject: {fileID: 101166}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Convex: 0
   m_InflateMesh: 0
@@ -104,3 +105,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101166}
   m_IsPrefabParent: 1
+--- !u!65 &65369368257395890
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1261966, y: 5.61854, z: 2.0196567}
+  m_Center: {x: -0.010978222, y: 2.80927, z: -0.0013207197}
