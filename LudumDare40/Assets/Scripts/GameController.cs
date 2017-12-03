@@ -27,11 +27,15 @@ public class GameController : MonoBehaviour {
 
 	public void Win () {
 		//Something happens when you win
+		LoadingScreenManager.LoadScene(3);
 		Debug.Log ("You win");
 	}
 
 	public void Lose () {
 		//Something happens when you lose
+
+		//Wait a bit before instantly losing?
+		LoadingScreenManager.LoadScene(4);
 		Debug.Log ("You Lose");
 	}
 }
