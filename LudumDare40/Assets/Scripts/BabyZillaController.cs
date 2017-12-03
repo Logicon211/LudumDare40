@@ -82,7 +82,7 @@ public class BabyZillaController : MonoBehaviour {
 				GameObject babyToEject = babyList [babyList.Count - 1];
 				babyList.RemoveAt (babyList.Count - 1);
 				--babiesAtEachLevel [babyToEject.GetComponent<BabyController> ().GetBabyZillaLayer ()];
-				Vector3 startPosition = new Vector3 (0f, 6f, 0f);
+				Vector3 startPosition = new Vector3 (0f, 3f, 0f);
 				babyToEject.GetComponent<BabyController> ().EjectFromBabyZilla (this.gameObject.transform.position + startPosition);
 			}
 		}
