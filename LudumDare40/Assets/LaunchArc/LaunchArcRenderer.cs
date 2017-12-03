@@ -20,8 +20,13 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 	public GameObject sphereObject;
 	private GameObject sphere;
-	private Transform m_Cam;
+
+	public Transform m_Cam;
+	public Transform player;
+
 	private Vector3 m_CamForward;
+
+
 
 	void Awake () {
 		lr = GetComponent<LineRenderer> ();	
@@ -31,7 +36,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 	void Start () {
 		lr.enabled = false;
 		// RenderArc ();
-		m_Cam = Camera.main.transform;
+		//m_Cam = Camera.main.transform;
 	}
 
 	void OnValidate() {
@@ -60,7 +65,27 @@ public class LaunchArcRenderer : MonoBehaviour {
 	Vector3[] CalculateArcArray() {
 		Vector3[] arcArray = new Vector3[resolution + 1];
 
-		radianAngle = Mathf.Deg2Rad * angle;
+
+		//Quaternion.LookRotation (transform.parent.rotation);
+		transform.eulerAngles = new Vector3 (transform.eulerAngles.x, m_Cam.eulerAngles.y - 90f, transform.eulerAngles.z);
+
+		//radianAngle = Mathf.Deg2Rad * angle;
+
+		//float testAngle = m_Cam.localEulerAngles.x;
+		//testAngle = (testAngle > 180) ? testAngle - 360 : testAngle;
+		//Debug.Log (testAngle);
+
+		if (-m_Cam.eulerAngles.x >= -61f) {
+			//Debug.Log(m_Cam.eulerAngles.x);
+			radianAngle = Mathf.Deg2Rad * (-m_Cam.eulerAngles.x - 270f/* - angle*/);//Mathf.Deg2Rad * angle;
+		} else {
+			//Debug.Log(-m_Cam.eulerAngles.x);
+			radianAngle = Mathf.Deg2Rad * (-m_Cam.eulerAngles.x/* - angle*/);//Mathf.Deg2Rad * angle;
+		}
+
+		radianAngle = Mathf.Deg2Rad * -179f;//(-testAngle + 60f);
+			
+		Debug.Log (radianAngle);
 
 		//https://en.wikipedia.org/wiki/Range_of_a_projectile
 		float maxDistance = ((velocity * velocity) / (2 * g)) * (1 + Mathf.Sqrt (1 + ((2 * g * this.transform.position.y) / (velocity * velocity * Mathf.Sin (radianAngle) * Mathf.Sin (radianAngle))))) * Mathf.Sin (2 * radianAngle); //(velocity * velocity * Mathf.Sin (2 * radianAngle)) / g;
@@ -97,7 +122,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 		//When you let go, fire projectile at the angle the arc is set at
 		if (Input.GetMouseButtonUp (1)) {
-			m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+			m_CamForward = m_Cam.forward; //Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			//Do stuff to fire projectile
 			GameObject launchedObject = Instantiate(projectile, transform.position, Quaternion.identity);
 			launchedObject.transform.Rotate (new Vector3(0f, 0f, angle));
@@ -108,10 +133,11 @@ public class LaunchArcRenderer : MonoBehaviour {
 			//var vect : Vector3 = Vector3(0,1,0);
 			//vect = quat * vect;
 
-			Vector3 projectileVelocity = m_CamForward * velocity;
+			Vector3 projectileVelocity = Vector3.forward * velocity;
+			//Vector3 projectileVelocity = m_CamForward * velocity;
 
+			Vector3 zRotatedVector = Quaternion.AngleAxis(m_Cam.eulerAngles.x/* - angle*/, Vector3.right) * projectileVelocity;
 			//have to add 90 degrees cause I'm manually rotating the LaunchSource - 90 degrees so it points in front of him
-			Vector3 zRotatedVector = Quaternion.AngleAxis(-angle, Vector3.right) * projectileVelocity;
 			Vector3 yRotatedVector = Quaternion.AngleAxis(transform.rotation.eulerAngles.y + 90f, Vector3.up) * zRotatedVector;
 
 			Debug.Log (zRotatedVector);
