@@ -94,6 +94,7 @@ public class BabyZillaController : MonoBehaviour {
 				--babiesAtEachLevel [babyToEject.GetComponent<BabyController> ().GetBabyZillaLayer ()];
 				Vector3 startPosition = new Vector3 (0f, 3f, 0f);
 				babyToEject.GetComponent<BabyController> ().EjectFromBabyZilla (this.gameObject.transform.position + startPosition);
+				meltdownSlider.value = babyList.Count;
 			}
 		}
 	}
