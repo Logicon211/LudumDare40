@@ -4921,7 +4921,7 @@ Prefab:
     - target: {fileID: 114666281344536456, guid: 58696ce574da2984c9a06b51e91e6f1f,
         type: 2}
       propertyPath: numberOfBabiesToWin
-      value: 10
+      value: 33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58696ce574da2984c9a06b51e91e6f1f, type: 2}

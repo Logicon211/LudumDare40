@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour {
 
 		//Wait a bit before instantly losing?
 
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene(4);
 		//LoadingScreenManager.LoadScene(4);
 		Debug.Log ("You Lose");
 	}

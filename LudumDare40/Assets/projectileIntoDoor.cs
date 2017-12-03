@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class projectileIntoDoor : MonoBehaviour {
 
@@ -31,6 +32,12 @@ public class projectileIntoDoor : MonoBehaviour {
 			//If it's not already closed
 			if (door.State != 1) {
 				if (door.RotationPending == false) StartCoroutine(door.Move());
+
+				GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
+				gameController.GetComponent<GameController> ().IncrementNumberOfBabies ();
+
+				GameObject player = GameObject.FindGameObjectWithTag ("Player");
+				player.GetComponent<ThirdPersonUserControl> ().maxSpeed += 1f;
 
 				//Score some points. make some noise. close the damn door
 				spotLight.enabled = false;

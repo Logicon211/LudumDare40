@@ -94,12 +94,6 @@ public class BabyController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider col) {
-		if (col.gameObject.CompareTag ("Door")) {
-			//Call method in game controller to progress towards winning.
-		}
-	}
-
 	public void SetBabyZillaLayer (int layer) {
 		babyZillaLayer = layer;
 	}
@@ -126,7 +120,7 @@ public class BabyController : MonoBehaviour {
 	IEnumerator disableHitBox()
 	{
 		GetComponent<CapsuleCollider> ().enabled = false;
-		yield return new WaitForSeconds(0.2f);
+		yield return new WaitForSeconds(0.1f);
 		GetComponent<CapsuleCollider> ().enabled = true;
 	}
 }
