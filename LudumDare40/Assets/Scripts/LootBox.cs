@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class LootBox : MonoBehaviour {
 
@@ -9,16 +10,16 @@ public class LootBox : MonoBehaviour {
     public Animator anim;
 
     private bool isOpen = false;
-
-    public bool testEnabled;
+	public float boxCooldown;
 
 	// Use this for initialization
 	void Start () {
+		boxCooldown = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		boxCooldown -= 1 * Time.deltaTime;
     }
 
     public void ActivateLootBox() {
@@ -56,13 +57,25 @@ public class LootBox : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag == "Player") {
-			if (!isOpen) {
-				ActivateLootBox();
-				isOpen = !isOpen;
+
+			ThirdPersonUserControl control;
+			if (collision.gameObject.GetComponent<ThirdPersonUserControl> () != null) {
+				control = collision.gameObject.GetComponent<ThirdPersonUserControl> ();
+			} else {
+				control = collision.transform.parent.gameObject.GetComponent<ThirdPersonUserControl> ();
 			}
-			else {
-				DeactivateLootBox();
-				isOpen = !isOpen;
+
+			Debug.Log ("charging: " + control.charging + "     boxcooldown: " + boxCooldown);
+			if (control.charging && boxCooldown <=0) {
+				if (!isOpen) {
+					ActivateLootBox ();
+					isOpen = !isOpen;
+					boxCooldown = 1f;
+				} else {
+					DeactivateLootBox ();
+					isOpen = !isOpen;
+					boxCooldown = 1f;
+				}
 			}
 		}
 	}
