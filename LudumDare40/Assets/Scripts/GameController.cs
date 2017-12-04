@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour {
 	public void Lose () {
 		if (lost) {
 			lost = false;
+			BOverlord.ActivateArmageddon ();
 			GameObject[] gos3 = GameObject.FindGameObjectsWithTag ("Door");
 			foreach (GameObject go in gos3) {
 				Door DoorScript = go.GetComponent<Door> ();
@@ -100,7 +101,6 @@ public class GameController : MonoBehaviour {
 
 		mainCamera.enabled = false;
 		LoseCam.enabled = true;
-		BOverlord.ActivateArmageddon ();
 
 		StartCoroutine ("loseScreenDelay");
 		//SceneManager.LoadScene(4);
