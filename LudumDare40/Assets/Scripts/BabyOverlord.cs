@@ -6,19 +6,26 @@ public class BabyOverlord : MonoBehaviour {
 
     public BabySpawner[] babies;
 
+	//Timer to spawn
     public float maxTimer = 2f;
-    public float difficulty = 1f;
-    public int spawnerUnlockDifficulty = 5;
-    public int enemySpawnCounter = 2;
+	//Timer reduced by difficulty increase rate
+    public float difficultyIncreaseRate = 1f;
+	//Handles how many enemies are needed to increase the amount of spawners being used at once.
+    public int spawnerUnlockRate = 5;
+	//how many enemies spawn for difficulty to go up
+    public int timerDecreaseRate = 2;
 
-    private int enemiesSpawned = 0;
-    private int enemiesSpawnedForSpawners = 0;
-    private float currentDifficulty = 0f;
-    private float timer;
 
     private bool armageddon = false;
 
-    private int initialSpawners = 1;
+	//Number of active spawners initially
+    public int initialSpawners = 1;
+	public float lowestSpawnTime = 5f;
+
+	public int enemiesSpawned = 0;
+	public int enemiesSpawnedForSpawners = 0;
+	public float currentDifficulty = 0f;
+	public float timer;
 
 
     // Use this for initialization
@@ -33,19 +40,23 @@ public class BabyOverlord : MonoBehaviour {
             callDownTheBabies();
             enemiesSpawned++;
             enemiesSpawnedForSpawners++;
-            if (enemiesSpawned >= enemySpawnCounter) {
+            if (enemiesSpawned >= timerDecreaseRate) {
 
-                currentDifficulty += difficulty;
+                currentDifficulty += difficultyIncreaseRate;
                 if (currentDifficulty >= maxTimer - 2f && !armageddon) {
                     currentDifficulty = maxTimer - 2f;
                 }
                 enemiesSpawned = 0;
             }
-            if (enemiesSpawnedForSpawners >= spawnerUnlockDifficulty && initialSpawners < babies.Length) {
+            if (enemiesSpawnedForSpawners >= spawnerUnlockRate && initialSpawners < babies.Length) {
                 enemiesSpawnedForSpawners = 0;
                 initialSpawners++;
             }
             timer = maxTimer - currentDifficulty;
+
+			if (timer < lowestSpawnTime) {
+				timer = lowestSpawnTime;
+			}
         }
     }
 

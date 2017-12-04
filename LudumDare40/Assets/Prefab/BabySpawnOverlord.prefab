@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4116695180008660}
   - component: {fileID: 33279915140623982}
-  - component: {fileID: 65075613543447438}
   - component: {fileID: 23276832501180000}
   m_Layer: 0
   m_Name: Cube
@@ -65,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513948667770998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.51, y: 13.15, z: 17.74}
+  m_LocalPosition: {x: -25.740026, y: 4.5254145, z: 18.348637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4116695180008660}
@@ -113,18 +112,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101711616321392}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65075613543447438
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1101711616321392}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114929188974759772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,8 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c30a38523a0cc488145411200f0aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  babies: []
+  babies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   maxTimer: 10
-  difficulty: 1
-  spawnerUnlockDifficulty: 5
-  enemySpawnCounter: 2
+  difficultyIncreaseRate: 0.5
+  spawnerUnlockRate: 12
+  timerDecreaseRate: 10
+  initialSpawners: 2
+  lowestSpawnTime: 5
+  enemiesSpawned: 0
+  enemiesSpawnedForSpawners: 0
+  currentDifficulty: 0
+  timer: 0

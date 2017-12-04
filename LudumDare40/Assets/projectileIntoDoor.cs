@@ -34,10 +34,11 @@ public class projectileIntoDoor : MonoBehaviour {
 				if (door.RotationPending == false) StartCoroutine(door.Move());
 
 				GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
-				gameController.GetComponent<GameController> ().IncrementNumberOfBabies ();
+				gameController.GetComponent<GameController> ().CloseADoor ();
 
 				GameObject player = GameObject.FindGameObjectWithTag ("Player");
-				player.GetComponent<ThirdPersonUserControl> ().maxSpeed += 1f;
+				player.GetComponent<ThirdPersonUserControl> ().maxSpeed += 0.3f;
+				player.GetComponent<ThirdPersonUserControl> ().chargeCooldownTime *= 0.95f;
 
 				//Score some points. make some noise. close the damn door
 				spotLight.enabled = false;

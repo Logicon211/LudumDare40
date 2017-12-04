@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-	public int numberOfBabiesToWin;
+	public int numberOfDoorsClosed;
 
-	private int currentNumberOfBabies = 0;
+	public int currentNumberOfDoors = 0;
 	public BabyOverlord BOverlord;
 
 	public Camera mainCamera;
@@ -24,12 +24,13 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		LoseCam.enabled = false;
 		gameoverColor = gameOverImage.material.color;
+		Text text = GameObject.FindGameObjectWithTag ("RemainingDoors").GetComponent<Text> ();
+		text.text = "Remaining Doors: " + (currentNumberOfDoors - numberOfDoorsClosed);
 		gameoverColor.a = 0;
 		gameOverImage.color = gameoverColor;
 		gameOverImage2.color = gameoverColor;
 		fadeGameOver = false;
 		fadePercent = 0;
-		
 	}
 	
 	// Update is called once per frame
@@ -48,10 +49,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void IncrementNumberOfBabies () {
-		++currentNumberOfBabies;
-		if (currentNumberOfBabies >= numberOfBabiesToWin) {
-			//Trigger win condition
+	public void CloseADoor () {
+		numberOfDoorsClosed++;
+		Text text = GameObject.FindGameObjectWithTag ("RemainingDoors").GetComponent<Text> ();
+		text.text = "Remaining Doors: " + (currentNumberOfDoors - numberOfDoorsClosed);
+		if (currentNumberOfDoors - numberOfDoorsClosed  <= 0) {
+			Win ();
 		}
 	}
 

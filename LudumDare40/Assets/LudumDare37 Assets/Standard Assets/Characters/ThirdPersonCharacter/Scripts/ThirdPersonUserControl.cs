@@ -28,6 +28,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		public bool charging;
 		public GameObject speedLines;
 		private float chargeCooldown =2f;
+		public float chargeCooldownTime = 1.1f;
 
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
@@ -123,7 +124,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
 
 			chargeCooldown -= 0.01f;
-			chargeSlider.value = Math.Min (1.5f, 1.5f - chargeCooldown);
+			chargeSlider.value = Math.Min (chargeCooldownTime + 0.1f, chargeCooldownTime + 0.1f - chargeCooldown);
+			chargeSlider.maxValue = (chargeCooldownTime);
 			chargeSlider.enabled = false;
 
 			//keyboard inputs
@@ -170,7 +172,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			if (Input.GetMouseButton (1) && m_IsGrounded && chargeCooldown <0) {
 				chargeAttack ();
-				chargeCooldown = 1.4f;
+				chargeCooldown = chargeCooldownTime;
 			}
 
             // calculate move direction to pass to character
