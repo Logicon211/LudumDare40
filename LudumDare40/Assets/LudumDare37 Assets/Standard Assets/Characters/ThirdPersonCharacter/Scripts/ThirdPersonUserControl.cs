@@ -261,8 +261,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 				//m_Rigidbody.velocity.x = Mathf.Clamp(m_Rigidbody.velocity.x, -maxSpeed, maxSpeed);
 				//m_Rigidbody.velocity.y = Mathf.Clamp(m_Rigidbody.velocity.y, -maxSpeed, maxSpeed);
-			}
 
+			}
+			m_Animator.SetFloat("Speed",m_Rigidbody.velocity.magnitude);
+			Debug.Log (m_Rigidbody.velocity.magnitude);
 
 			// convert the world relative moveInput vector into a local-relative
 			// turn amount and forward amount required to head in the desired
@@ -305,13 +307,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		void HandleGroundedMovement(bool jump)
 		{
 			// check whether conditions are right to allow a jump:
-			if (jump && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+			if (jump)
 			{
 				// jump!
 				audiosource.PlayOneShot(jumpNoise);
 				m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
 				m_IsGrounded = false;
-				m_Animator.applyRootMotion = false;
+				m_Animator.SetTrigger("New Trigger");
+				m_Animator.SetBool ("animator_is_grounded", true);
+				//m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.2f;
 			}
 		}
@@ -330,11 +334,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
+				m_Animator.SetBool ("animator_is_grounded", true);
 				m_Animator.applyRootMotion = true;
 			}
 			else
 			{
 				m_IsGrounded = false;
+				m_Animator.SetBool ("animator_is_grounded", false);
 			//	Debug.Log ("WE ARE IN THE AIR");
 			//	Debug.Log ("transform.position.y: " + transform.position.y);
 			//m_GroundNormal = Vector3.up;
@@ -383,28 +389,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		void UpdateAnimator(Vector3 move)
 		{
-			// update the animator parameters
-			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetBool("Crouch", m_Crouching);
-			m_Animator.SetBool("OnGround", m_IsGrounded);
-			if (!m_IsGrounded)
-			{
-				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
-			}
-
-			// calculate which leg is behind, so as to leave that leg trailing in the jump animation
-			// (This code is reliant on the specific run cycle offset in our animations,
-			// and assumes one leg passes the other at the normalized clip times of 0.0 and 0.5)
-			float runCycle =
-				Mathf.Repeat(
-					m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime + m_RunCycleLegOffset, 1);
-			float jumpLeg = (runCycle < k_Half ? 1 : -1) * m_ForwardAmount;
-			if (m_IsGrounded)
-			{
-				m_Animator.SetFloat("JumpLeg", jumpLeg);
-			}
-
+			
 			// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
 			// which affects the movement speed because of the root motion.
 			if (m_IsGrounded && move.magnitude > 0)

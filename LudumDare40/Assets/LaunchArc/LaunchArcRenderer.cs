@@ -30,7 +30,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 	public AudioClip throwNoise;
 
 	private AudioSource audioSource;
-
+	Animator m_Animator;
 
 
 	void Awake () {
@@ -41,6 +41,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 	void Start () {
 		lr.enabled = false;
 		audioSource = GetComponent<AudioSource> ();
+		m_Animator = player.GetComponent<Animator> ();
 		// RenderArc ();
 		//m_Cam = Camera.main.transform;
 	}
@@ -135,6 +136,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 			//When you let go, fire projectile at the angle the arc is set at
 			if (Input.GetMouseButtonUp (0)) {
+				m_Animator.SetTrigger ("throwTrigger");
 				m_CamForward = m_Cam.forward; //Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 				//Do stuff to fire projectile
 				audioSource.PlayOneShot(throwNoise);
