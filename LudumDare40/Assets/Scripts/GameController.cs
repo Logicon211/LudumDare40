@@ -112,7 +112,7 @@ public class GameController : MonoBehaviour {
 
 	public void killAll(){
 		backgroundMusic.clip = gameOverSong;
-		backgroundMusic.volume = 1;
+		backgroundMusic.volume = 0.6;
 		backgroundMusic.Play();
 		GameObject[] gos = GameObject.FindGameObjectsWithTag("Baby");
 		foreach(GameObject go in gos)
