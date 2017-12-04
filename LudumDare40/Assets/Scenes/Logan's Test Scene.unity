@@ -3265,12 +3265,32 @@ Prefab:
     - target: {fileID: 1456657265853074, guid: 83106ba2a811dd949b15536f26883863, type: 2}
       propertyPath: m_Name
       value: ThirdPersonController_version3
-      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 114584402681219166, guid: 83106ba2a811dd949b15536f26883863,
         type: 2}
       propertyPath: chargeSlider
       value: 
       objectReference: {fileID: 1213357839}
+    - target: {fileID: 4755099389606250, guid: 83106ba2a811dd949b15536f26883863, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.236
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755099389606250, guid: 83106ba2a811dd949b15536f26883863, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.021
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755099389606250, guid: 83106ba2a811dd949b15536f26883863, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761298753924180, guid: 83106ba2a811dd949b15536f26883863, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.539
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761298753924180, guid: 83106ba2a811dd949b15536f26883863, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.735
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83106ba2a811dd949b15536f26883863, type: 2}
   m_IsPrefabParent: 0
@@ -7836,12 +7856,12 @@ Prefab:
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 705.5
+      value: 608.5
       objectReference: {fileID: 0}
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 186
+      value: 187.5
       objectReference: {fileID: 0}
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -9375,7 +9395,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235614595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360, y: -65.45712, z: 0}
+  m_LocalPosition: {x: 360, y: -83.2539, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 705536418}
