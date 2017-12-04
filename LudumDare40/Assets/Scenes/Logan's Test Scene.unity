@@ -356,7 +356,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50946752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360, y: -94.7576, z: -2}
+  m_LocalPosition: {x: 360, y: -65.17364, z: -2}
   m_LocalScale: {x: 1.2, y: 1.2, z: 0}
   m_Children: []
   m_Father: {fileID: 2041878814}
@@ -3320,6 +3320,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114584402681219166, guid: 83106ba2a811dd949b15536f26883863,
+        type: 2}
+      propertyPath: chargeSlider
+      value: 
+      objectReference: {fileID: 1213357839}
     - target: {fileID: 4974062624995574, guid: 83106ba2a811dd949b15536f26883863, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0.5326752
@@ -3340,11 +3345,6 @@ Prefab:
       propertyPath: m_Name
       value: ThirdPersonController_version3
       objectReference: {fileID: 0}
-    - target: {fileID: 114584402681219166, guid: 83106ba2a811dd949b15536f26883863,
-        type: 2}
-      propertyPath: chargeSlider
-      value: 
-      objectReference: {fileID: 1213357839}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83106ba2a811dd949b15536f26883863, type: 2}
   m_IsPrefabParent: 0
@@ -7844,7 +7844,7 @@ Prefab:
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 608.5
+      value: 705.5
       objectReference: {fileID: 0}
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
