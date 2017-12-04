@@ -7865,7 +7865,7 @@ Prefab:
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 185.5
+      value: 205
       objectReference: {fileID: 0}
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -9374,6 +9374,7 @@ Camera:
   m_PrefabParentObject: {fileID: 20237104439275440, guid: 83106ba2a811dd949b15536f26883863,
     type: 2}
   m_PrefabInternal: {fileID: 526957428}
+  m_LocalPosition: {x: 360, y: -94.7576, z: 0}
 --- !u!4 &1237655356 stripped
 Transform:
   m_PrefabParentObject: {fileID: 449174, guid: e8bf8a360364d0948a2f6427cf3cc569, type: 2}

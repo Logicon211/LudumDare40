@@ -33,7 +33,7 @@ public class BabyOverlord : MonoBehaviour {
         timer = maxTimer;
     }
 
-    // Update is called once per frame
+    // for is called once per frame
     void Update() {
         timer -= Time.deltaTime;
         if (timer <= 0f) {
@@ -93,5 +93,13 @@ public class BabyOverlord : MonoBehaviour {
         //currentDifficulty = maxTimer;
 		maxTimer = 0.1f;
 		timer = 0f;
+		initialSpawners = babies.Length;
+
+		spawnerUnlockRate = 0;
+		timerDecreaseRate = 0;
+
+		foreach(BabySpawner babySpawner in babies) {
+			babySpawner.transform.position = Vector3.MoveTowards(babySpawner.transform.position, transform.position, 33f);
+		}
     }
 }

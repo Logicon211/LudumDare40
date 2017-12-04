@@ -269,7 +269,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			}
 			m_Animator.SetFloat("Speed",m_Rigidbody.velocity.magnitude);
-			Debug.Log (m_Rigidbody.velocity.magnitude);
 
 			// convert the world relative moveInput vector into a local-relative
 			// turn amount and forward amount required to head in the desired
