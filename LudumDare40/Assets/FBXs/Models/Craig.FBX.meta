@@ -42,6 +42,10 @@ ModelImporter:
     100068: CATRigSpine3
     100070: //RootNode
     100072: Craig
+    100074: Baby
+    100076: polySurface2
+    100078: polySurface3
+    100080: transform3
     400000: CATRigAnkleBone001
     400002: CATRigAnkleBone001 1
     400004: CATRigHub001
@@ -79,6 +83,10 @@ ModelImporter:
     400068: CATRigSpine3
     400070: //RootNode
     400072: Craig
+    400074: Baby
+    400076: polySurface2
+    400078: polySurface3
+    400080: transform3
     4300000: Craig
     7400000: Run
     7400002: Idle
@@ -205,8 +213,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump
       takeName: Take 001
-      firstFrame: 75
-      lastFrame: 100
+      firstFrame: 123
+      lastFrame: 169
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
