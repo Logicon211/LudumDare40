@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class carScript : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class carScript : MonoBehaviour {
 	public AudioClip honk;
 	public AudioClip crash;
 	public AudioClip engine;
+	public AudioClip punch;
 
 	private AudioSource audioSource;
 
@@ -43,8 +45,21 @@ public class carScript : MonoBehaviour {
 	}
 		
 	void OnCollisionEnter(Collision collision)	{
-		if ( collision.gameObject.tag == "Player" || collision.gameObject.tag == "Car") {
+		if (collision.gameObject.tag == "Car") {
 			audioSource.PlayOneShot (crash);
+		} else if (collision.gameObject.tag == "Player") {
+			ThirdPersonUserControl control;
+			if (collision.gameObject.GetComponent<ThirdPersonUserControl> () != null) {
+				control = collision.gameObject.GetComponent<ThirdPersonUserControl> ();
+			} else {
+				control = collision.transform.parent.gameObject.GetComponent<ThirdPersonUserControl> ();
+			}
+
+			if (control.charging) {
+				audioSource.PlayOneShot (punch);
+			} else {
+				audioSource.PlayOneShot (crash);
+			}
 		}
 	}
 }

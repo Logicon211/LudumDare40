@@ -18,18 +18,7 @@ public class LootBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("space")) {
-            if (!isOpen) {
-                Debug.Log("FUCK");
-                ActivateLootBox();
-                isOpen = !isOpen;
-            }
-            else {
-                Debug.Log("FUCK");
-                DeactivateLootBox();
-                isOpen = !isOpen;
-            }
-        }
+
     }
 
     public void ActivateLootBox() {
@@ -63,4 +52,19 @@ public class LootBox : MonoBehaviour {
     void ChangeAnimationState(int state) {
         anim.SetInteger("boxState", state);
     }
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Player") {
+			if (!isOpen) {
+				ActivateLootBox();
+				isOpen = !isOpen;
+			}
+			else {
+				DeactivateLootBox();
+				isOpen = !isOpen;
+			}
+		}
+	}
+
 }

@@ -13,7 +13,7 @@ public class BirdManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
+		transform.RotateAround(new Vector3(-18.77388f, -0.6813722f, 24.21172f), Vector3.up, 20 * Time.deltaTime);
     }
 
     public void DropLootBox() {
@@ -24,4 +24,13 @@ public class BirdManager : MonoBehaviour {
         //boxBody.velocity = transform.TransformDirection(Vector3.forward * 10);
         //Destroy(this);
     }
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Baby") {
+			DropLootBox ();
+
+			Destroy(other.gameObject);
+			Destroy(gameObject);
+		}
+	}
 }

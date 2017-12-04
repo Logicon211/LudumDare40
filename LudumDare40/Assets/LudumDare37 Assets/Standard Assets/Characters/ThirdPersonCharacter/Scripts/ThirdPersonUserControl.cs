@@ -57,7 +57,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		public int currentNumBabies = 0;
 
 		public AudioClip jumpNoise;
-		public AudioClip footstep;
+		public AudioClip punch;
 
 		public Slider chargeSlider;
 
@@ -353,12 +353,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 						AddBabyToBack ();
 					}
 				}
-			}
+			} 
+//			else if (collision.gameObject.tag == "Car") {
+//				if (charging) {
+//					audiosource.PlayOneShot (punch);
+//				}
+//			}
+
 		}
 
 
 		void chargeAttack(){
-			Debug.Log ("charging");
 			charging = true;
 			m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			collisionCubeRigidbody.isKinematic = false;
