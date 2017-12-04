@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 	public AudioClip gameOverSong;
 	private bool notKilled;
 	private bool lost;
-	public GameObject retryButton;
+	public GameObject retryText;
 
 	// Use this for initialization
 	void Start () {
@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour {
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
-		retryButton.SetActive(true);
+		retryText.SetActive(true);
 
 	}
 

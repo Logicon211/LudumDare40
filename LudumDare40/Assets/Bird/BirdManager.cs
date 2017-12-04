@@ -5,6 +5,7 @@ using UnityEngine;
 public class BirdManager : MonoBehaviour {
 
     public Rigidbody lootBox;
+	public GameObject fountain;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,8 @@ public class BirdManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.RotateAround(new Vector3(-18.77388f, -0.6813722f, 24.21172f), Vector3.up, 20 * Time.deltaTime);
+		transform.RotateAround(fountain.transform.position, Vector3.up, 20 * Time.deltaTime);
+
     }
 
     public void DropLootBox() {
