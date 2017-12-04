@@ -132,12 +132,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81eb331a3c4b55643901bbc399fcb876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfBabiesToWin: 33
+  numberOfDoorsClosed: 0
+  currentNumberOfDoors: 33
   BOverlord: {fileID: 0}
   mainCamera: {fileID: 0}
   LoseCam: {fileID: 0}
   gameOverImage: {fileID: 0}
   gameOverImage2: {fileID: 0}
   fadeGameOver: 0
-  babyspawners: []
-  carSpawners: []
+  carSpawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  backgroundMusic: {fileID: 82058241483816830}
+  gameOverSong: {fileID: 8300000, guid: 368aa27634477504a9095b5900671194, type: 3}
+  retryButton: {fileID: 0}

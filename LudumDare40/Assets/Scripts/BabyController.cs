@@ -23,7 +23,7 @@ public class BabyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Init ();
-		Debug.Log (flying);
+		//Debug.Log (flying);
 		if (!flying) {
 			StartMovingTowardsBabyZilla ();
 		}

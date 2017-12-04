@@ -20,9 +20,16 @@ public class GameController : MonoBehaviour {
 	private Color gameoverColor2;
 	private int fadePercent;
 	public CarSpawner[] carSpawners;
+	public AudioSource backgroundMusic;
+	public AudioClip gameOverSong;
+	private bool notKilled;
+	private bool lost;
+	public GameObject retryButton;
 
 	// Use this for initialization
 	void Start () {
+		notKilled = true;
+		lost = true;
 		LoseCam.enabled = false;
 		gameoverColor = gameOverImage.color;
 		gameoverColor2 = gameOverImage2.color;
@@ -40,15 +47,24 @@ public class GameController : MonoBehaviour {
 	void Update () {
 
 		if (fadeGameOver) {
+			//Debug.Log ("fadePercent: " + fadePercent);
 			fadePercent++;
-			Mathf.Clamp (fadePercent, 0, 100);
+			fadePercent = Mathf.Clamp (fadePercent, 0, 10);
 			gameoverColor.a = fadePercent;
+			gameoverColor2.a = fadePercent;
 			gameOverImage.color = gameoverColor;
 			gameOverImage2.color = gameoverColor2;
-			if (fadePercent >= 100) {
+			backgroundMusic.volume =(fadePercent / 10);
+			if (fadePercent >= 10 && notKilled) {
+				notKilled = false;
 				killAll ();
 			}
+			if (!notKilled) {
+				if (Input.GetKey (KeyCode.Space)) {
+					reloadLevel ();
+				}
 
+			}
 		}
 	}
 
@@ -68,7 +84,14 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void Lose () {
-		
+		if (lost) {
+			lost = false;
+			GameObject[] gos3 = GameObject.FindGameObjectsWithTag ("Door");
+			foreach (GameObject go in gos3) {
+				Door DoorScript = go.GetComponent<Door> ();
+				StartCoroutine (DoorScript.Move ());
+			}
+
 		//Something happens when you lose
 
 		//Wait a bit before instantly losing?
@@ -78,15 +101,18 @@ public class GameController : MonoBehaviour {
 		LoseCam.enabled = true;
 		BOverlord.ActivateArmageddon ();
 
-
 		StartCoroutine ("loseScreenDelay");
 		//SceneManager.LoadScene(4);
 		//LoadingScreenManager.LoadScene(4);
 		Debug.Log ("You Lose");
+		}
+
 	}
 
 	public void killAll(){
-
+		backgroundMusic.clip = gameOverSong;
+		backgroundMusic.volume = 1;
+		backgroundMusic.Play();
 		GameObject[] gos = GameObject.FindGameObjectsWithTag("Baby");
 		foreach(GameObject go in gos)
 			Destroy(go);
@@ -100,6 +126,15 @@ public class GameController : MonoBehaviour {
 		foreach (CarSpawner go in carSpawners)
 			go.gameObject.SetActive (false);
 
+
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		retryButton.SetActive(true);
+
+	}
+
+	public void reloadLevel(){
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	IEnumerator loseScreenDelay()

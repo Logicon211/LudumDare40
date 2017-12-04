@@ -61,7 +61,7 @@ public class BabyOverlord : MonoBehaviour {
     }
 
     void callDownTheBabies() {
-        Debug.Log("Starting the birthing communion");
+        //Debug.Log("Starting the birthing communion");
         int[] spawnList = new int[babies.Length];
         for (int i = 0; i < babies.Length; i++) {
             spawnList[i] = i;

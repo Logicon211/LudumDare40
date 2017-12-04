@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 114313586303241700}
+  TPUC: {fileID: 0}
   punch: {fileID: 8300000, guid: 96dfdf9d9b446ff42b4e11c8c21bed79, type: 3}
 --- !u!114 &114313586303241700
 MonoBehaviour:
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   babyDensity: 0.25
-  maxBabyCapacity: 91
+  maxBabyCapacity: 1
   meltdownSlider: {fileID: 0}
 --- !u!198 &198487982027462414
 ParticleSystem:

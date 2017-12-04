@@ -6,6 +6,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class BabyZillaDashChecker : MonoBehaviour {
 
 	public BabyZillaController controller;
+	public ThirdPersonUserControl TPUC;
 
 	private AudioSource audioSource;
 	public AudioClip punch;
@@ -22,7 +23,7 @@ public class BabyZillaDashChecker : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "Player") {
-			if (collision.gameObject.GetComponent<ThirdPersonUserControl>().charging) {
+			if (TPUC.charging) {
 				controller.EjectBaby ();
 				controller.EjectBaby ();
 				controller.EjectBaby ();
