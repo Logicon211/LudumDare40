@@ -28,8 +28,25 @@ public class BabyZillaDashChecker : MonoBehaviour {
 				controller.EjectBaby ();
 				controller.EjectBaby ();
 				controller.EjectBaby ();
-				audioSource.PlayOneShot (punch);
+				if (!audioSource.isPlaying) {                     
+					audioSource.PlayOneShot (punch);        
+				}
 			}
 		}
+
 	}
+
+//	void OnTriggerEnter(Collider collision) {
+//		if (collision.gameObject.tag == "Player") {
+//			if (TPUC.charging) {
+//				controller.EjectBaby ();
+//				controller.EjectBaby ();
+//				controller.EjectBaby ();
+//				controller.EjectBaby ();
+//				if (!audioSource.isPlaying) {                     
+//					audioSource.PlayOneShot (punch);        
+//				}
+//			}
+//		}
+//	}
 }

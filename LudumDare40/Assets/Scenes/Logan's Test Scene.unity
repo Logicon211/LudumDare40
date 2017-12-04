@@ -8239,6 +8239,16 @@ Prefab:
       propertyPath: maxBabyCapacity
       value: 91
       objectReference: {fileID: 0}
+    - target: {fileID: 65294764580449594, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65294764580449594, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75dc775f3ecc3ee4ebc7291ee1627db5, type: 2}
   m_IsPrefabParent: 0
