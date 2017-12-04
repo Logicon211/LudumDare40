@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   babyDensity: 0.25
-  maxBabyCapacity: 1
+  maxBabyCapacity: 91
   meltdownSlider: {fileID: 0}
 --- !u!198 &198487982027462414
 ParticleSystem:

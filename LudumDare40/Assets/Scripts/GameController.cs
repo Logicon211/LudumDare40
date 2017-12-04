@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour {
 				killAll ();
 			}
 			if (!notKilled) {
-				if (Input.GetKey (KeyCode.Space)) {
+				if (Input.anyKeyDown) {
 					reloadLevel ();
 				}
 

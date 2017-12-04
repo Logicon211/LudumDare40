@@ -422,9 +422,24 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			rb.useGravity = false;
 
 			//terrible hack to get it to stop moving
-			babyObject.GetComponent<BabyController> ().partOfBabyZilla = true;
+			babyObject.GetComponent<BabyController> ().onCraig = true;
 			babyObject.GetComponent<BabyController> ().speed = 0f;
 			babyObject.transform.parent = babyHolder;
+
+			babyObject.transform.eulerAngles = new Vector3(0, babyHolder.transform.eulerAngles.y - 90f, 90);
+			babyObject.transform.localScale = new Vector3(5f, 5f, 5f);
+
+			if (currentNumBabies == 1) {
+				babyObject.transform.localPosition = new Vector3 (babyObject.transform.localPosition.x, babyObject.transform.localPosition.y, babyObject.transform.localPosition.z);
+			} else if (currentNumBabies == 2) {
+				babyObject.transform.localPosition = new Vector3 (babyObject.transform.localPosition.x + 0.1f, babyObject.transform.localPosition.y, babyObject.transform.localPosition.z);
+			} else if (currentNumBabies == 3) {
+				babyObject.transform.localPosition = new Vector3 (babyObject.transform.localPosition.x - 0.1f, babyObject.transform.localPosition.y, babyObject.transform.localPosition.z);
+			} else if (currentNumBabies == 4) {
+				babyObject.transform.localPosition = new Vector3 (babyObject.transform.localPosition.x + 0.05f, babyObject.transform.localPosition.y - 0.2f, babyObject.transform.localPosition.z);
+			} else if (currentNumBabies == 5) {
+				babyObject.transform.localPosition = new Vector3 (babyObject.transform.localPosition.x - 0.05f, babyObject.transform.localPosition.y - 0.2f, babyObject.transform.localPosition.z);
+			}
 			//Scale baby down a bit
 
 
@@ -434,16 +449,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 		public void RemoveBabyFromBack() {
-			if (babyHolder.GetChild (0) != null) {
-				Destroy (babyHolder.GetChild(0).gameObject);
+			if (babyHolder.childCount > 0 && babyHolder.GetChild (babyHolder.childCount - 1) != null) {
+				Destroy (babyHolder.GetChild(babyHolder.childCount - 1).gameObject);
 			}
 		}
 
 		IEnumerator ChargingTimer()
 		{
-			print("CHARGING");
 			yield return new WaitForSeconds(0.3f);
-			print("DONE CHARGING");
 			charging = false;
 			//collisionCubeRigidbody.
 			cubeCollider.enabled = false;

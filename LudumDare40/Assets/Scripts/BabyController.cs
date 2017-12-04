@@ -11,6 +11,7 @@ public class BabyController : MonoBehaviour {
 	public  float speed;
 	private GameObject babyZilla;
 	public  bool partOfBabyZilla;
+	public bool onCraig;
 	private Rigidbody rb;
 	private Collider collider;
 	private int babyZillaLayer;
@@ -23,7 +24,7 @@ public class BabyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Init ();
-		if (!flying && !partOfBabyZilla) {
+		if (!flying && !partOfBabyZilla && !onCraig) {
 			StartMovingTowardsBabyZilla ();
 		}
 	}
@@ -36,7 +37,7 @@ public class BabyController : MonoBehaviour {
 
 	void MoveTowardsBabyZilla ()
 	{
-		if (!partOfBabyZilla && !flying) {
+		if (!partOfBabyZilla && !flying && !onCraig) {
 			float step = speed * Time.deltaTime;
 			this.transform.position = Vector3.MoveTowards (this.transform.position, babyZilla.transform.position, step);
 		}
@@ -57,6 +58,7 @@ public class BabyController : MonoBehaviour {
 	public void StartMovingTowardsBabyZilla () {
 		flying = false;
 		partOfBabyZilla = false;
+		onCraig = false;
 		speed = defaultSpeed;
 	}
 
@@ -65,6 +67,7 @@ public class BabyController : MonoBehaviour {
 		this.gameObject.transform.parent = null;
 		this.transform.position = startPosition;
 		partOfBabyZilla = false;
+		onCraig = false;
 		InitBabyFlying ();
 		Vector3 launchDirection = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up) * new Vector3 (1f, 1f, 1f);
 		rb.AddForce (launchDirection * launchForce, ForceMode.Impulse);

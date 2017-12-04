@@ -3252,7 +3252,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4813328575104714, guid: 4a3e6ee4409c2974b9b72a2551d895ce, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 1.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813328575104714, guid: 4a3e6ee4409c2974b9b72a2551d895ce, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813328575104714, guid: 4a3e6ee4409c2974b9b72a2551d895ce, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a3e6ee4409c2974b9b72a2551d895ce, type: 2}
@@ -4909,7 +4917,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 705536417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -6943,16 +6951,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 114105343410306746, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
+        type: 2}
+      propertyPath: TPUC
+      value: 
+      objectReference: {fileID: 526566236}
     - target: {fileID: 114313586303241700, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
         type: 2}
       propertyPath: meltdownSlider
       value: 
       objectReference: {fileID: 844442547}
-    - target: {fileID: 114105343410306746, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
+    - target: {fileID: 114313586303241700, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
         type: 2}
-      propertyPath: TPUC
-      value: 91
-      objectReference: {fileID: 526566236}
+      propertyPath: maxBabyCapacity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75dc775f3ecc3ee4ebc7291ee1627db5, type: 2}
   m_IsPrefabParent: 0
@@ -9278,7 +9291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1235614596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9304,7 +9317,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235614595}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -9332,7 +9345,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1235614598}
   m_OnClick:
     m_PersistentCalls:
@@ -9356,7 +9369,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235614595}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
