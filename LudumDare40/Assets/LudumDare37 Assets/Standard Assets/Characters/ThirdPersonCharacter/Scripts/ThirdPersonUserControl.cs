@@ -378,6 +378,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			collisionCubeRigidbody.isKinematic = false;
 			collisionCubeRigidbody.mass = 300;
+			GetComponent<Rigidbody> ().mass = 50;
 			cubeCollider.enabled = true;
 			collisionCube.SetActive (true);
 			//m_Rigidbody.drag = 0;
@@ -456,6 +457,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			cubeCollider.enabled = false;
 			collisionCubeRigidbody.isKinematic = true;
 			collisionCubeRigidbody.mass = 0;
+			GetComponent<Rigidbody>().mass = 1;
 			collisionCube.SetActive (false);
 			//m_Rigidbody.drag = 0.05f;
 			speedLines.SetActive(false);
