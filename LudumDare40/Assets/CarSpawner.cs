@@ -23,8 +23,6 @@ public class CarSpawner : MonoBehaviour {
 
 			int carIndex = Random.Range (0, cars.Length*3);
 
-
-			Debug.Log (carIndex);
 			if (carIndex < 3) {
 				carIndex = 0;
 			} else if (carIndex < 6) {

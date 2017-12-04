@@ -63,6 +63,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		private AudioSource audiosource;
 
+		private Transform babyHolder;
+		public GameObject baby;
 
 		void Start()
 		{
@@ -97,6 +99,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			audiosource = GetComponent<AudioSource> ();
 			speedLines.SetActive(false);
 			charging = false;
+
+			babyHolder = transform.Find ("BabyHolder");
         }
 
 
@@ -346,6 +350,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 						currentNumBabies++;
 						maxSpeedChange ();
 						Destroy (collision.gameObject);
+						AddBabyToBack ();
 					}
 				}
 			}
@@ -409,7 +414,30 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
+		public void AddBabyToBack() {
+			GameObject babyObject = Instantiate (baby, babyHolder.transform.position, Quaternion.identity);//Instantiate (baby, babyHolder,; 
+			babyObject.GetComponent<CapsuleCollider> ().enabled = false;
+			Rigidbody rb = babyObject.GetComponent<Rigidbody> ();
+			rb.isKinematic = true;
+			rb.useGravity = false;
 
+			//terrible hack to get it to stop moving
+			babyObject.GetComponent<BabyController> ().partOfBabyZilla = true;
+			babyObject.GetComponent<BabyController> ().speed = 0f;
+			babyObject.transform.parent = babyHolder;
+			//Scale baby down a bit
+
+
+//			Debug.Log (babyObject.transform.position);
+//			babyObject.transform.position = new Vector3(0,0,0);//babyHolder.transform.position;
+//			Debug.Log (babyObject.transform.position);
+		}
+
+		public void RemoveBabyFromBack() {
+			if (babyHolder.GetChild (0) != null) {
+				Destroy (babyHolder.GetChild(0).gameObject);
+			}
+		}
 
 		IEnumerator ChargingTimer()
 		{

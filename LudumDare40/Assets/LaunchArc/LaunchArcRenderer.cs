@@ -164,6 +164,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 				lr.enabled = false;
 				player.GetComponent<ThirdPersonUserControl> ().currentNumBabies--;
 				player.GetComponent<ThirdPersonUserControl>().maxSpeedChange ();
+				player.GetComponent<ThirdPersonUserControl> ().RemoveBabyFromBack ();
 
 				if (sphere != null) {
 					Destroy (sphere);

@@ -8,9 +8,9 @@ public class BabyController : MonoBehaviour {
 	public float launchForce;
 	public bool flying;
 
-	private float speed;
+	public  float speed;
 	private GameObject babyZilla;
-	private bool partOfBabyZilla;
+	public  bool partOfBabyZilla;
 	private Rigidbody rb;
 	private Collider collider;
 	private int babyZillaLayer;
@@ -23,8 +23,7 @@ public class BabyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Init ();
-		//Debug.Log (flying);
-		if (!flying) {
+		if (!flying && !partOfBabyZilla) {
 			StartMovingTowardsBabyZilla ();
 		}
 	}
