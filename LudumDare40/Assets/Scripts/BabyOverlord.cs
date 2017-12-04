@@ -91,6 +91,7 @@ public class BabyOverlord : MonoBehaviour {
     public void ActivateArmageddon() {
         armageddon = true;
         //currentDifficulty = maxTimer;
-		maxTimer = 0.03f;
+		maxTimer = 0.1f;
+		timer = 0f;
     }
 }

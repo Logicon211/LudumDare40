@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737181126453c4d40adc30b8fa2cee9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 8
+  spawnTime: 6
   currentTime: 7.3892236
   cars:
   - {fileID: 1626251551665996, guid: 510543cfebb47cc41b4b687c34eecd5f, type: 2}
