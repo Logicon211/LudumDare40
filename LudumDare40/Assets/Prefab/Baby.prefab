@@ -617,7 +617,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1833892646677904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.614607, y: -0.00999999, z: 17.028067}
+  m_LocalPosition: {x: -21.664726, y: -0.00999999, z: 24.939716}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4346396014880620}
@@ -687,6 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 2
   launchForce: 5
+  flying: 0
 --- !u!136 &136860917087494652
 CapsuleCollider:
   m_ObjectHideFlags: 1
