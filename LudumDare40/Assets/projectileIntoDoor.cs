@@ -38,7 +38,7 @@ public class projectileIntoDoor : MonoBehaviour {
 
 				GameObject player = GameObject.FindGameObjectWithTag ("Player");
 				player.GetComponent<ThirdPersonUserControl> ().maxSpeed += 0.3f;
-				player.GetComponent<ThirdPersonUserControl> ().chargeCooldownTime *= 0.95f;
+				player.GetComponent<ThirdPersonUserControl> ().chargeCooldownTime *= 0.98f;
 
 				//Score some points. make some noise. close the damn door
 				spotLight.enabled = false;

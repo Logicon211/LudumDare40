@@ -79,7 +79,8 @@ public class GameController : MonoBehaviour {
 
 	public void Win () {
 		//Something happens when you win
-		LoadingScreenManager.LoadScene(3);
+		//LoadingScreenManager.LoadScene(3);
+		SceneManager.LoadScene(3);
 		Debug.Log ("You win");
 	}
 
