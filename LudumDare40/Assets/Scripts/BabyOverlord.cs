@@ -54,7 +54,7 @@ public class BabyOverlord : MonoBehaviour {
             }
             timer = maxTimer - currentDifficulty;
 
-			if (timer < lowestSpawnTime) {
+			if (timer < lowestSpawnTime && !armageddon) {
 				timer = lowestSpawnTime;
 			}
         }
@@ -90,6 +90,7 @@ public class BabyOverlord : MonoBehaviour {
 
     public void ActivateArmageddon() {
         armageddon = true;
-        currentDifficulty = maxTimer;
+        //currentDifficulty = maxTimer;
+		maxTimer = 0.03f;
     }
 }

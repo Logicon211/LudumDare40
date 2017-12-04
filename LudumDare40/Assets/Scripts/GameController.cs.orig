@@ -8,7 +8,8 @@ public class GameController : MonoBehaviour {
 
 	public int numberOfDoorsClosed;
 
-	public int currentNumberOfDoors = 0;
+<<<<<<< HEAD
+	private int currentNumberOfBabies = 0;
 	public BabyOverlord BOverlord;
 
 	public Camera mainCamera;
@@ -17,23 +18,27 @@ public class GameController : MonoBehaviour {
 	public Image gameOverImage2;
 	public bool fadeGameOver;
 	private Color gameoverColor;
-	private Color gameoverColor2;
 	private int fadePercent;
 	public CarSpawner[] carSpawners;
 
 	// Use this for initialization
 	void Start () {
 		LoseCam.enabled = false;
-		gameoverColor = gameOverImage.color;
-		gameoverColor2 = gameOverImage2.color;
-		Text text = GameObject.FindGameObjectWithTag ("RemainingDoors").GetComponent<Text> ();
-		text.text = "Remaining Doors: " + (currentNumberOfDoors - numberOfDoorsClosed);
+		gameoverColor = gameOverImage.material.color;
 		gameoverColor.a = 0;
-		gameoverColor2.a = 0;
 		gameOverImage.color = gameoverColor;
-		gameOverImage2.color = gameoverColor2;
+		gameOverImage2.color = gameoverColor;
 		fadeGameOver = false;
 		fadePercent = 0;
+		
+=======
+	public int currentNumberOfDoors = 0;
+
+	// Use this for initialization
+	void Start () {
+		Text text = GameObject.FindGameObjectWithTag ("RemainingDoors").GetComponent<Text> ();
+		text.text = "Remaining Doors: " + (currentNumberOfDoors - numberOfDoorsClosed);
+>>>>>>> Improvements
 	}
 	
 	// Update is called once per frame
@@ -44,8 +49,8 @@ public class GameController : MonoBehaviour {
 			Mathf.Clamp (fadePercent, 0, 100);
 			gameoverColor.a = fadePercent;
 			gameOverImage.color = gameoverColor;
-			gameOverImage2.color = gameoverColor2;
-			if (fadePercent >= 100) {
+			gameOverImage2.color = gameoverColor;
+			if (fadePercent == 100) {
 				killAll ();
 			}
 
