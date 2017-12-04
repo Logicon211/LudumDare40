@@ -24,9 +24,7 @@ public class BabyZillaController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.E)) {
-			EjectBaby ();
-		}
+		
 	}
 		
 	void OnTriggerEnter(Collider other) {
