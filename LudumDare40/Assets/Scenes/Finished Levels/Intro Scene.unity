@@ -204,7 +204,7 @@ Prefab:
         type: 2}
       propertyPath: sprite.Array.data[7]
       value: 
-      objectReference: {fileID: 21300000, guid: 5385dcff5e51d064a8459eb11a278b76,
+      objectReference: {fileID: 21300000, guid: c36bf6f92a9cb8c449cd304492ec8cd8,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
