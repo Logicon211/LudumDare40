@@ -686,8 +686,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSpeed: 2
-  launchForce: 5
+  launchForce: 10
   flying: 0
+  speed: 0
+  partOfBabyZilla: 0
+  onCraig: 0
 --- !u!136 &136860917087494652
 CapsuleCollider:
   m_ObjectHideFlags: 1
