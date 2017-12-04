@@ -127,7 +127,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 				//m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 				//Enable line renderer
 				lr.enabled = true;
-				velocity += 0.15f;
+				velocity += 0.3f;
 				if (velocity > velocityMax) {
 					velocity = velocityMax;
 				}
