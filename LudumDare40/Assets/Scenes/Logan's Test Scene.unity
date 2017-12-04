@@ -356,7 +356,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50946752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360, y: -65.17364, z: -2}
+  m_LocalPosition: {x: 360, y: -94.7576, z: -2}
   m_LocalScale: {x: 1.2, y: 1.2, z: 0}
   m_Children: []
   m_Father: {fileID: 2041878814}
@@ -5677,6 +5677,10 @@ Prefab:
       propertyPath: babies.Array.data[60]
       value: 
       objectReference: {fileID: 1723442348}
+    - target: {fileID: 1101711616321392, guid: 8a9817d5d2de6284fa45f4589450d6ca, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65075613543447438, guid: 8a9817d5d2de6284fa45f4589450d6ca, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8a9817d5d2de6284fa45f4589450d6ca, type: 2}
@@ -7860,7 +7864,7 @@ Prefab:
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 705.5
+      value: 608.5
       objectReference: {fileID: 0}
     - target: {fileID: 224628447235576586, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -7960,7 +7964,7 @@ Prefab:
     - target: {fileID: 224685714927956562, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -8.975006
       objectReference: {fileID: 0}
     - target: {fileID: 224673576399721414, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -7985,7 +7989,7 @@ Prefab:
     - target: {fileID: 224480080454012142, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -8.975006
       objectReference: {fileID: 0}
     - target: {fileID: 114683125861060716, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -9374,7 +9378,6 @@ Camera:
   m_PrefabParentObject: {fileID: 20237104439275440, guid: 83106ba2a811dd949b15536f26883863,
     type: 2}
   m_PrefabInternal: {fileID: 526957428}
-  m_LocalPosition: {x: 360, y: -94.7576, z: 0}
 --- !u!4 &1237655356 stripped
 Transform:
   m_PrefabParentObject: {fileID: 449174, guid: e8bf8a360364d0948a2f6427cf3cc569, type: 2}
