@@ -6253,21 +6253,6 @@ Prefab:
       objectReference: {fileID: 713307739}
     - target: {fileID: 114666281344536456, guid: 58696ce574da2984c9a06b51e91e6f1f,
         type: 2}
-      propertyPath: retryButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 82058241483816830, guid: 58696ce574da2984c9a06b51e91e6f1f,
-        type: 2}
-      propertyPath: Priority
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114666281344536456, guid: 58696ce574da2984c9a06b51e91e6f1f,
-        type: 2}
-      propertyPath: currentNumberOfDoors
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114666281344536456, guid: 58696ce574da2984c9a06b51e91e6f1f,
-        type: 2}
       propertyPath: retryText
       value: 
       objectReference: {fileID: 50946752}
@@ -9143,7 +9128,7 @@ Prefab:
     - target: {fileID: 224685714927956562, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.975006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224673576399721414, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -9168,7 +9153,7 @@ Prefab:
     - target: {fileID: 224480080454012142, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.975006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114683125861060716, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}

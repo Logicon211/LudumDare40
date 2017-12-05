@@ -58,7 +58,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -147,4 +147,4 @@ MonoBehaviour:
   - {fileID: 0}
   backgroundMusic: {fileID: 82058241483816830}
   gameOverSong: {fileID: 8300000, guid: 368aa27634477504a9095b5900671194, type: 3}
-  retryButton: {fileID: 0}
+  retryText: {fileID: 0}
