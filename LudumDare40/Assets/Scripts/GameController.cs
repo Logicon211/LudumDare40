@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour {
 			gameoverColor2.a = fadePercent;
 			gameOverImage.color = gameoverColor;
 			gameOverImage2.color = gameoverColor2;
-			backgroundMusic.volume =(fadePercent / 10);
+			// backgroundMusic.volume =(fadePercent / 10);
 			if (fadePercent >= 10 && notKilled) {
 				notKilled = false;
 				killAll ();
@@ -112,8 +112,8 @@ public class GameController : MonoBehaviour {
 
 	public void killAll(){
 		backgroundMusic.clip = gameOverSong;
-		backgroundMusic.volume = 0.6f;
-		backgroundMusic.Play();
+		backgroundMusic.PlayOneShot (gameOverSong);
+		//backgroundMusic.volume = 0.3f;
 		GameObject[] gos = GameObject.FindGameObjectsWithTag("Baby");
 		foreach(GameObject go in gos)
 			Destroy(go);

@@ -296,7 +296,7 @@ Prefab:
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: slideToStopMusicAndJingle
-      value: 20
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}

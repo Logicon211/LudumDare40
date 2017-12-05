@@ -8237,7 +8237,7 @@ Prefab:
     - target: {fileID: 114313586303241700, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
         type: 2}
       propertyPath: maxBabyCapacity
-      value: 91
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 65294764580449594, guid: 75dc775f3ecc3ee4ebc7291ee1627db5,
         type: 2}
@@ -9143,7 +9143,7 @@ Prefab:
     - target: {fileID: 224685714927956562, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.975006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224673576399721414, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
@@ -9168,7 +9168,7 @@ Prefab:
     - target: {fileID: 224480080454012142, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.975006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114683125861060716, guid: 8d507aad53c10254d825ee295dfa10b0,
         type: 2}
