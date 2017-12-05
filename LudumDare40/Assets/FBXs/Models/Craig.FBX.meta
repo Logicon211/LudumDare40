@@ -214,7 +214,7 @@ ModelImporter:
       name: Jump
       takeName: Take 001
       firstFrame: 170
-      lastFrame: 170
+      lastFrame: 175
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
